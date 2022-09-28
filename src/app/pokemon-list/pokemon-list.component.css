@@ -1,0 +1,57 @@
+.grid-layout {
+    padding: 50px 0;
+    display: grid;
+    max-width: 100%;
+    grid-gap: 60px;
+    margin: 0 auto;
+    width: 95%;
+    grid-auto-rows: 300px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.pokemon-card {
+    min-width: 180px;
+    max-width: 400px;
+    color: #4E5152;
+    background-color: #D8F4F7;
+    display: inline-block;
+}
+
+.pokemon-card:hover {
+    box-shadow: 0 0 11px rgba(33, 33, 33, .2);
+    cursor: pointer;
+}
+
+.mat-card-image {
+    transform: scale(1.1);
+    margin-bottom: 0px;
+}
+
+.mat-card-title {
+    font-size: 22px;
+    display: inline-flex;
+    text-transform: capitalize;
+}
+
+.previous {
+    background-color: #3f51b5;
+    color: white;
+    width: 100px;
+    margin-bottom: 4%;
+}
+.next {
+    background-color: #3f51b5;
+    color: white;
+    margin-left: 1%;
+    width: 100px;
+    margin-right: 7%;
+    margin-bottom: 4%;
+}
+
+.buttons-row {
+    display: flex;
+    justify-content: flex-end;
+    
+
+
+}

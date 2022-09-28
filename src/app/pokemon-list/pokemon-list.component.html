@@ -1,0 +1,34 @@
+<div style="text-align:center">
+  <div class="grid-layout" *ngIf="pokemons && loadMorePokemons === false">
+    <div
+      *ngFor="let pokemon of pokemons.results">
+      <mat-card class="pokemon-card" *ngIf="pokemon.details">
+          <img
+            mat-card-image
+            src="{{ pokemon.details.sprites.front_default }}"
+            alt="photo of {{ pokemon.name }}"
+          />
+        <mat-card-title>{{ pokemon.name}}</mat-card-title>
+      </mat-card>
+    </div>
+  </div>
+  <div class="grid-layout" *ngIf="nextPokemons && loadMorePokemons === true">
+    <div
+      *ngFor="let pokemon of nextPokemons.results">
+      <mat-card class="pokemon-card" *ngIf="pokemon.details">
+          <img
+            mat-card-image
+            src="{{ pokemon.details.sprites.front_default }}"
+            alt="photo of {{ pokemon.name }}"
+          />
+        <mat-card-title>{{ pokemon.name}}</mat-card-title>
+      </mat-card>
+    </div>
+  </div>
+  <div class="buttons-row">
+    <button disabled *ngIf="loadMorePokemons === false" mat-button class="previous">Previous</button>
+    <button *ngIf="loadMorePokemons === true" (click)="getPokemons()" mat-button class="previous">Previous</button>
+    <button *ngIf="loadMorePokemons === false" mat-button class="next" (click)="getMorePokemons()">Next</button>
+    <button disabled *ngIf="loadMorePokemons === true" mat-button class="next" (click)="getMorePokemons()">Next</button>
+  </div>
+</div>
