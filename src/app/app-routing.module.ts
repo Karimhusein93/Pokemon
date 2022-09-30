@@ -6,8 +6,8 @@ import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.componen
 import { ProductListComponent } from './product-list/product-list.component';
 
 const routes: Routes = [
-  { path:'home',component:PokemonListComponent},
-  { path:'detail',component:PokemonDetailComponent},
+  { path:'',component:PokemonListComponent},
+  { path:'detail/:name',component:PokemonDetailComponent},
   { path:'create-product',component:CreateProductComponent},
   { path:'product-list',component:ProductListComponent},
 

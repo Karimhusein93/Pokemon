@@ -1,8 +1,10 @@
-import { Component, OnInit} from '@angular/core';
-import { Pokemon} from './pokemon';
-import { PokemonResults } from './pokemon-results';
+import { Component, EventEmitter, OnInit, Output} from '@angular/core';
+import { Subscription } from 'rxjs';
 import { PokemonDetails } from '../pokemon-detail/pokemon-details';
+import { Pokemon} from './pokemon';
 import { PokemonListService } from './pokemon-list.service';
+import { PokemonResults } from './pokemon-results';
+
 
 @Component({
   selector: 'app-pokemon-list',
@@ -10,59 +12,72 @@ import { PokemonListService } from './pokemon-list.service';
   styleUrls: ['./pokemon-list.component.css']
 })
 export class PokemonListComponent implements OnInit {
-  constructor(private pokemonService: PokemonListService) { }
+  constructor(private pokemonService: PokemonListService){
+  }
+
   pokemons: Pokemon;
-  nextPokemons:Pokemon;
-  loadMorePokemons:boolean=false;
+  subscriptions: Subscription[] = [];
+  loading:boolean=true;
+
+  get pokemonsList(): any[] {
+    return this.pokemonService.pokemons;
+  }
+
+  set subscription(subscription: Subscription) {
+    this.subscriptions.push(subscription);
+  }
   ngOnInit(): void {
    
-    this.getPokemons();
-   
+    this.getPokemons(this.loading);
   }
-  getPokemons(): any {
-    this.loadMorePokemons = false;
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription ? subscription.unsubscribe() : 0);
+  }
+
+  getPokemons(loading:boolean): any {
+    if(loading){
     this.pokemonService.getPokemons()
     .subscribe((data: Pokemon) => {
       this.pokemons = data;
-      console.log(data);
       if (this.pokemons.results && this.pokemons.results.length) {
         this.pokemons.results.forEach(pokemon => {
           pokemon.id = pokemon.url.split('/')[
             pokemon.url.split('/').length - 2
           ];
-
+          this.loading = false;
           this.getPokemonDetails(pokemon);
         });
       }
     });
   }
-  getMorePokemons():any{
-  this.pokemonService.getMorePokemons()
-  .subscribe((data: Pokemon) => {
-    this.nextPokemons = data;
-    console.log(data);
-    if (this.nextPokemons.results && this.nextPokemons.results.length) {
-      this.nextPokemons.results.forEach(pokemon => {
-        pokemon.id = pokemon.url.split('/')[
-          pokemon.url.split('/').length - 2
-        ];
-        this.loadMorePokemons = true;
-        this.getPokemonDetails(pokemon);
-      });
-    }
-  });
+  else{
+    this.pokemonService.getMorePokemons()
+    .subscribe((data: Pokemon) => {
+      this.pokemons = data;
+      if (this.pokemons.results && this.pokemons.results.length) {
+        this.pokemons.results.forEach(pokemon => {
+          pokemon.id = pokemon.url.split('/')[
+            pokemon.url.split('/').length - 2
+          ];
+          this.loading = true;
+          this.getPokemonDetails(pokemon);
+        });
+      }
+    });
+  }
+}
+getPokemonDetails(pokemon: PokemonResults): void {
+  this.pokemonService
+    .getPokemonDetails(pokemon.name)
+    .subscribe((details: PokemonDetails) => {
+      pokemon.details = details;
+    });
 }
 
-  /**
-   * Gets and sets a pokemons details
-   */
-  getPokemonDetails(pokemon: PokemonResults): void {
-    this.pokemonService
-      .getPokemonDetails(pokemon.name)
-      .subscribe((details: PokemonDetails) => {
-        pokemon.details = details;
-        // when last pokemon details have been loaded
-        
-      });
-  }
-  }
+  // getFilteredList(){
+  //   this.filteredList = this.pokemons.results.filter(
+  //     pokemon => pokemon.name.includes(this.pokemon));
+    
+  //   }
+}

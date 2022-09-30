@@ -1,10 +1,12 @@
   .nav{
     display:flex;
     justify-content: flex-start;
-    background-color: #292423;
+    background-color: white;
     margin: 0;
-    padding-left: 0 !important;
+    padding-left: 0 !important; 
+    height: 90px;
   }
+
   li {
     margin-right: 20px;
     margin-left: 20px;
@@ -13,7 +15,7 @@
   }
   a{
     text-decoration: none;
-    color: whitesmoke;
+    color: #292423;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: large;
   }
@@ -25,3 +27,24 @@
   .nav-item{
     align-self: center;
   }
+   ul > div:nth-child(6){
+    width: 35%;
+  }
+  ::ng-deep .mat-focused .mat-form-field-label {
+    color: #292423 !important;
+   }
+  
+   ::ng-deep.mat-form-field-underline {
+    background-color: #292423 !important;
+  } 
+  .mat-form-field-underline{
+    color: #292423 !important;
+  }
+  
+  ::ng-deep.mat-form-field-ripple {
+   background-color: #292423 !important;
+  }
+  input::placeholder {
+    color: #292423;
+  }
+ 

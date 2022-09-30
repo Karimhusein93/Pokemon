@@ -17,6 +17,7 @@ import { MatCardModule } from '@angular/material/card';
 import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
 import { CreateProductComponent } from './create-product/create-product.component';
 import { ProductListComponent } from './product-list/product-list.component';
+import {ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -40,7 +41,8 @@ import { ProductListComponent } from './product-list/product-list.component';
     MatInputModule,
     FormsModule,
     HttpClientModule,
-    MatCardModule
+    MatCardModule,
+    ReactiveFormsModule,
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
