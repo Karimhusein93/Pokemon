@@ -1,1 +1,72 @@
-<p>create-product works!</p>
+<form>
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Ex. San Francisco" />
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Description</mat-label>
+          <input matInput placeholder="Ex. California" />
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Price</mat-label>
+          <input
+            matInput
+            #postalCode
+            maxlength="5"
+            placeholder="Ex. 94105"
+            value="94043"
+          />
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Category</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let category of categories" [value]="category.value">
+              {{category.viewValue}}
+            </mat-option>
+          </mat-select>
+          <input matInput placeholder="Category" />
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Image URL</mat-label>
+          <input matInput placeholder="Ex. California" />
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Phone</mat-label>
+          <input
+            matInput
+            #postalCode
+            maxlength="5"
+            placeholder="Ex. 94105"
+            value="94043"
+          />
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Select</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let phoneType of phoneTypes" [value]="phoneType.value">
+              {{phoneType.viewValue}}
+            </mat-option>
+          </mat-select>
+          <input matInput placeholder="Select" />
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+</form>

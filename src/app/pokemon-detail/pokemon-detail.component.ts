@@ -29,6 +29,7 @@ export class PokemonDetailComponent implements OnInit {
         this.pokemon = this.pokemonListService.pokemons.find(i => i.name === params['name']);
         if (this.pokemon) {
           this.getEvolution();
+          this.getDamage();
           return;
         }
       }
@@ -36,6 +37,7 @@ export class PokemonDetailComponent implements OnInit {
       this.subscription = this.pokemonListService.get(params['name']).subscribe((response: any) => {
         this.pokemon = response;
         this.getEvolution();
+        this.getDamage();
       }, (error: any) => console.log('Error Occurred:', error));
     });
   }
@@ -45,6 +47,7 @@ export class PokemonDetailComponent implements OnInit {
         this.pokemon = this.pokemonListService.pokemons.find(i => i.name === "bulbasaur");
         if (this.pokemon) {
           this.getEvolution();
+          this.getDamage();
           return;
         }
       }
@@ -52,6 +55,7 @@ export class PokemonDetailComponent implements OnInit {
       this.subscription = this.pokemonListService.get("bulbasaur").subscribe((response: any) => {
         this.pokemon = response;
         this.getEvolution();
+        this.getDamage();
       }, (error: any) => console.log('Error Occurred:', error));
     });
   }
@@ -89,5 +93,14 @@ export class PokemonDetailComponent implements OnInit {
     }
     
   }
-  } 
+  getDamage(){
+    this.pokemon.damages = [];
+    this.pokemonListService.getDamage(this.pokemon.id).subscribe(response => {
+      const name = response.damage_class.name;
+    this.pokemon.damages.push({
+      name:name
+    });
+  })
+}
+}
 

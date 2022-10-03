@@ -56,16 +56,18 @@
       <div class="evolution-container">
       <div class="evolution-title">
         Evolution
+      </div>
           <div *ngFor="let evolution of pokemon.evolutions" class="evolution-data">
                   <p>{{ evolution.name | titlecase }}</p>
               </div>
-        </div>
       </div>
       <div class="damage-container">
         <div class="damage-title">
           Damage When Attacked
-          </div>
-        
+        </div>
+          <div *ngFor="let damage of pokemon.damages" class="damage-data">
+            <p>{{ damage.name | titlecase }}</p>
+        </div>
       </div>
     </div>
       <div class="position-absolute top-0 start-0">

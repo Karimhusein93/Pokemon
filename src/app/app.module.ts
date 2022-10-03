@@ -18,6 +18,7 @@ import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.componen
 import { CreateProductComponent } from './create-product/create-product.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import {ReactiveFormsModule } from '@angular/forms';
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -43,6 +44,7 @@ import {ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     MatCardModule,
     ReactiveFormsModule,
+    MatSelectModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

@@ -46,6 +46,10 @@ export class PokemonListService {
     const url = `${this.urlDetails}evolution-chain/${id}`;
     return this.http.get<any>(url);
   }
+  getDamage(id: number): Observable<any> {
+    const url = `${this.urlDetails}move/${id}`;
+    return this.http.get<any>(url);
+  }
 
   getPokemonDetails(name: string): Observable<PokemonDetails> {
     return this.http

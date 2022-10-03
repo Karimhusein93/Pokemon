@@ -20,11 +20,18 @@
   bottom: 45%;
   left: 10%;
 }
+.damage-data{
+  display: flex;
+  justify-content: center;
+}
 .evolution-data{
   display: flex;
   justify-content: center;
 }
 .evolution-data >p{
+  font-size: large;
+}
+.damage-data >p{
   font-size: large;
 }
 .damage-title{
