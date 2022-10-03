@@ -74,10 +74,4 @@ getPokemonDetails(pokemon: PokemonResults): void {
       pokemon.details = details;
     });
 }
-
-  // getFilteredList(){
-  //   this.filteredList = this.pokemons.results.filter(
-  //     pokemon => pokemon.name.includes(this.pokemon));
-    
-  //   }
 }

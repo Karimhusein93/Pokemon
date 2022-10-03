@@ -7,6 +7,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 
 const routes: Routes = [
   { path:'',component:PokemonListComponent},
+  { path:'detail',component:PokemonDetailComponent},
   { path:'detail/:name',component:PokemonDetailComponent},
   { path:'create-product',component:CreateProductComponent},
   { path:'product-list',component:ProductListComponent},

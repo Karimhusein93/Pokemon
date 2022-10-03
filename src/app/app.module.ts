@@ -27,7 +27,7 @@ import {ReactiveFormsModule } from '@angular/forms';
     PokemonListComponent,
     PokemonDetailComponent,
     CreateProductComponent,
-    ProductListComponent
+    ProductListComponent,
   ],
   imports: [
     BrowserModule,

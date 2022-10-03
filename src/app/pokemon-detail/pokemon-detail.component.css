@@ -1,19 +1,81 @@
-.pokemon-title{
-    background-color: green;
-    text-align: center;
-    margin: 1% 3% 2% 3% ;
-    padding: 15px;
-    height: 50px;
-    vertical-align: middle;
-    color: white;
+.pokemon-title {
+  text-align: center;
+  margin: 1% 3% 2% 3%;
+  padding: 15px;
+  height: 50px;
+  vertical-align: middle;
+  color: white;
 }
-.pokemon-stats-data{
-    height: 30px;
-    background-color: green;
-    color: white;
-    border-style:solid;
+.pokemon-stats-data {
+  height: 50px;
 }
-.pokemon-stats{
-    display: flex;
-    justify-content: center;
+.stats {
+  display: flex;
+  flex-direction: column;
+  font-size: 30px;
+  margin-bottom: 10%;
+}
+.stats-title {
+  position: absolute;
+  bottom: 45%;
+  left: 10%;
+}
+.evolution-data{
+  display: flex;
+  justify-content: center;
+}
+.evolution-data >p{
+  font-size: large;
+}
+.damage-title{
+  position: absolute;
+  left: 10%;
+  font-size: 30px;
+}
+.profile-title{
+  left: 10%;
+  font-size: 30px;
+  margin-left: 10%;
+}
+.profile{
+  display: flex;
+  justify-content: center;
+}
+.profile{
+  font-size: large;
+
+}
+.profile-container{
+margin-bottom: 10%;
+
+}
+.evolution-container{
+  margin-bottom: 10%;
+}
+.evolution-title{
+  font-size: 30px;
+  margin-left: 10%;
+}
+.pokemon-stats {
+  display: flex;
+  margin-left: 30%;
+  width: 1000px;
+  color: white;
+  font-size: large;
+  border-style: solid;
+}
+.pokemon-types {
+  display: flex;
+  justify-content: center;
+}
+.pokemon-type {
+  display: inline-flex;
+  margin: 15px 10px 5px 0px;
+  padding: 5px 10px;
+  text-shadow: black 1px 1px 1px;
+  border-radius: 10px;
+  font-size: 15px;
+}
+.damage-container{
+  margin-bottom: 10%;
 }

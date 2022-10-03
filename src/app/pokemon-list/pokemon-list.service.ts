@@ -18,9 +18,8 @@ export class PokemonListService {
     'http://pokeapi.co/api/v2/pokemon/?limit=30&offset=0';
   private secondPokemonUrl =
     'http://pokeapi.co/api/v2/pokemon/?limit=30&offset=30';
-  private urlDetails = 'http://pokeapi.co/api/v2/pokemon/';
+  private urlDetails = 'https://pokeapi.co/api/v2/';
   loading: boolean = false;
-
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -31,26 +30,32 @@ export class PokemonListService {
     return this._pokemons;
   }
   getPokemons(): Observable<Pokemon> {
-      return this.http
-        .get<Pokemon>(this.firstPokemonUrl)
-        .pipe(catchError(this.handleError));
+    return this.http
+      .get<Pokemon>(this.firstPokemonUrl)
+      .pipe(catchError(this.handleError));
   }
-    getMorePokemons(): Observable<Pokemon> {
-    
-        return this.http
-          .get<Pokemon>(this.secondPokemonUrl)
-          .pipe(catchError(this.handleError));
-      
+  getMorePokemons(): Observable<Pokemon> {
+    return this.http
+      .get<Pokemon>(this.secondPokemonUrl)
+      .pipe(catchError(this.handleError));
   }
   get(name: string): Observable<any> {
-    return this.http.get<any>(`${this.urlDetails}${name}`);
-    
+    return this.http.get<any>(`${this.urlDetails}pokemon/${name}`);
+  }
+  getEvolution(id: number): Observable<any> {
+    const url = `${this.urlDetails}evolution-chain/${id}`;
+    return this.http.get<any>(url);
   }
 
   getPokemonDetails(name: string): Observable<PokemonDetails> {
     return this.http
-      .get<PokemonDetails>(`${this.urlDetails}/${name}`)
+      .get<PokemonDetails>(`${this.urlDetails}pokemon/${name}`)
       .pipe(catchError(this.handleError));
+  }
+
+  getSpecies(name: string): Observable<any> {
+    const url = `${this.urlDetails}pokemon-species/${name}`;
+    return this.http.get<any>(url);
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -68,32 +73,3 @@ export class PokemonListService {
     return throwError('Something bad happened; please try again later.');
   }
 }
-
-// private urlDetails = 'http://pokeapi.co/api/v2/pokemon/';
-// private pokemonApiUrl = 'http://pokeapi.co/api/v2/'
-// private _pokemons: any[] = [];
-// constructor(private http: HttpClient) { }
-
-// get pokemons(): any[] {
-//   return this._pokemons;
-// }
-
-// getType(pokemon: any): string {
-//   return pokemon && pokemon.types.length > 0 ? pokemon.types[0].type.name : '';
-// }
-
-// get(name: string): Observable<any> {
-//   const url = `${this.urlDetails}${name}`;
-//   return this.http.get<any>(url);
-// }
-
-// getEvolution(id: number): Observable<any> {
-//   const url = `${this.pokemonApiUrl}evolution-chain/${id}`;
-//   return this.http.get<any>(url);
-// }
-
-// getSpecies(name: string): Observable<any> {
-//   const url = `${this.pokemonApiUrl}pokemon-species/${name}`;
-//   return this.http.get<any>(url);
-// }
-// }
