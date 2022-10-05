@@ -1,72 +1,127 @@
-<form>
-  <table class="example-full-width" cellspacing="0">
-    <tr>
+<form [formGroup]="productForm" >
+  <table class="product-table" cellspacing="0">
+    <tr class="first-row">
       <td>
-        <mat-form-field class="example-full-width" appearance="fill">
+        <mat-form-field class="name-field" appearance="fill">
           <mat-label>Name</mat-label>
-          <input matInput placeholder="Ex. San Francisco" />
+          <input matInput formControlName="name"/>
+          <mat-error
+            *ngIf="
+              productForm.get('name')?.hasError('required') ||
+              productForm.get('name')?.hasError('minlength') ||
+              productForm.get('name')?.hasError('pattern')
+            "
+            >The field is required, should have minimum 3 characters, composed only from alphabets and/or numbers.</mat-error
+          >
         </mat-form-field>
       </td>
       <td>
-        <mat-form-field class="example-full-width" appearance="fill">
+        <mat-form-field class="description-field" appearance="fill">
           <mat-label>Description</mat-label>
-          <input matInput placeholder="Ex. California" />
+          <input matInput formControlName="description" />
+          <mat-error
+            *ngIf="
+              productForm.get('description')?.hasError('required') ||
+              productForm.get('description')?.hasError('minlength') ||
+              productForm.get('description')?.hasError('pattern')
+            "
+            >The field is required, should have minimum 3 characters, composed only from alphabets and/or numbers.</mat-error
+          >
         </mat-form-field>
       </td>
       <td>
-        <mat-form-field class="example-full-width" appearance="fill">
+        <mat-form-field class="price-field" appearance="fill">
           <mat-label>Price</mat-label>
-          <input
-            matInput
-            #postalCode
-            maxlength="5"
-            placeholder="Ex. 94105"
-            value="94043"
-          />
+          <input matInput formControlName="price"/>
+          <mat-error
+            *ngIf="
+              productForm.get('price')?.hasError('required') ||
+              productForm.get('price')?.hasError('pattern')
+            "
+            >The field is required and the input type shoud be number with 2 decimal places.</mat-error
+          >
         </mat-form-field>
       </td>
     </tr>
-    <tr>
+    <tr class="second-row">
       <td>
-        <mat-form-field class="example-full-width" appearance="fill">
+        <mat-form-field class="category-field" appearance="fill">
           <mat-label>Category</mat-label>
-          <mat-select>
-            <mat-option *ngFor="let category of categories" [value]="category.value">
-              {{category.viewValue}}
+          <mat-select formControlName="category">
+            <mat-option
+            
+              *ngFor="let category of categories"
+              [value]="category.id"
+            >
+              {{ category.value }}
             </mat-option>
+            
           </mat-select>
-          <input matInput placeholder="Category" />
+          <mat-error
+            *ngIf="
+              productForm.get('category')?.hasError('required')
+            "
+            >The field is required.</mat-error
+          >
         </mat-form-field>
       </td>
-      <td>
-        <mat-form-field class="example-full-width" appearance="fill">
+       <td>
+        <mat-form-field class="image-field" appearance="fill">
           <mat-label>Image URL</mat-label>
-          <input matInput placeholder="Ex. California" />
+          <input matInput formControlName="image" />
+          <mat-error
+            *ngIf="
+              productForm.get('image')?.hasError('required') ||
+              productForm.get('image')?.hasError('pattern')
+            "
+            >The field is required and image url should be valid</mat-error
+          >
         </mat-form-field>
       </td>
       <td>
-        <mat-form-field class="example-full-width" appearance="fill">
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Phone icon"
+          fontIcon="phone"
+        ></mat-icon>
+        <mat-form-field class="phone-field" appearance="fill">
           <mat-label>Phone</mat-label>
-          <input
-            matInput
-            #postalCode
-            maxlength="5"
-            placeholder="Ex. 94105"
-            value="94043"
-          />
+          <input matInput formControlName="phone"/>
+          <mat-error
+            *ngIf="
+              productForm.get('phone')?.hasError('required') ||
+              productForm.get('phone')?.hasError('maxlength') ||
+              productForm.get('phone')?.hasError('pattern')
+            "
+            >The field is required, numbers only and the maximum length is 10.</mat-error
+          >
         </mat-form-field>
-      </td>
+      </td> 
       <td>
-        <mat-form-field class="example-full-width" appearance="fill">
+        <mat-form-field class="phone-type-field" appearance="fill">
           <mat-label>Select</mat-label>
-          <mat-select>
-            <mat-option *ngFor="let phoneType of phoneTypes" [value]="phoneType.value">
-              {{phoneType.viewValue}}
+          <mat-select formControlName="typeOfPhone">
+            <mat-option
+              *ngFor="let phoneType of phoneTypes"
+              [value]="phoneType.id"
+            >
+              {{ phoneType.value }}
             </mat-option>
           </mat-select>
-          <input matInput placeholder="Select" />
         </mat-form-field>
       </td>
     </tr>
+    <button mat-button class="addNewProduct()">Add new product</button>
   </table>
+  <div class="buttons-row">
+    <button (click)="clearForm()" mat-button class="reset">Reset</button>
+    <button
+      [disabled]="productForm.invalid"
+      mat-button
+      type="submit"
+      class="submit"
+    >
+      Save
+    </button>
+  </div>
 </form>

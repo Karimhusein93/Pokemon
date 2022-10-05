@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from './user.service';
 
@@ -12,11 +12,7 @@ import { UserService } from './user.service';
 
 export class AppComponent {
   isAdmin: any;
-  // links = ['#home', '#detail', '#create-product', '#product-list'];
-  // titles = ['Home', 'Detail', 'Create Product', 'Product List'];
-  // activeLink = this.links[0];
   title="Pokemon";
-  registrationForm: FormGroup;
 	
   constructor(private userService: UserService,public router: Router) { 
     
