@@ -22,7 +22,23 @@ export class CreateProductComponent implements OnInit {
   
   constructor(public builder: FormBuilder) {}
 
-  productForm = this.builder.group({
+  productForm =this.builder.group({
+    products: this.builder.array([])
+});
+
+  ngOnInit(): void {
+}
+clearForm(){
+  this.productForm.reset();
+}
+get products(){
+  return this.productForm.controls["products"] as FormArray;
+}
+deleteProduct(productIndex: number) {
+  this.products.removeAt(productIndex);
+}
+addNewProduct(){
+  const form = this.builder.group({
     name: ["",[
       Validators.required,
       Validators.minLength(3),
@@ -45,12 +61,6 @@ export class CreateProductComponent implements OnInit {
      phone: ['', [Validators.required,Validators.maxLength(10),Validators.pattern("^[0-9]*$")]],
      typeOfPhone:['']
   });
-
-  ngOnInit(): void {
-}
-clearForm(){
-  this.productForm.reset();
-}
-addNewProduct(){
+  this.products.push(form);
 }
 }

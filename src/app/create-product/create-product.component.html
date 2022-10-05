@@ -1,5 +1,8 @@
 <form [formGroup]="productForm" >
-  <table class="product-table" cellspacing="0">
+  <ng-container formArrayName="products">
+    <ng-container *ngFor="let productForm of products.controls; let i = index">
+  <div [formGroupName]="i">
+      <table class="product-table" cellspacing="0">
     <tr class="first-row">
       <td>
         <mat-form-field class="name-field" appearance="fill">
@@ -110,13 +113,19 @@
           </mat-select>
         </mat-form-field>
       </td>
+      <mat-icon class="delete-btn" (click)="deleteProduct(i)">
+        delete_forever</mat-icon>
     </tr>
-    <button mat-button class="addNewProduct()">Add new product</button>
   </table>
+</div>
+  </ng-container>
+</ng-container>
+    <button mat-button  [disabled]="productForm.invalid" (click)="addNewProduct()">Add new product</button>
+  
   <div class="buttons-row">
     <button (click)="clearForm()" mat-button class="reset">Reset</button>
     <button
-      [disabled]="productForm.invalid"
+      [disabled]="productForm.invalid && products.controls.length === 0"
       mat-button
       type="submit"
       class="submit"
