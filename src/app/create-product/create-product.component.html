@@ -113,8 +113,6 @@
           </mat-select>
         </mat-form-field>
       </td>
-      <mat-icon class="delete-btn" (click)="deleteProduct(i)">
-        delete_forever</mat-icon>
     </tr>
   </table>
 </div>
@@ -125,8 +123,8 @@
   <div class="buttons-row">
     <button (click)="clearForm()" mat-button class="reset">Reset</button>
     <button
-      [disabled]="productForm.invalid && products.controls.length === 0"
       mat-button
+      (click) = "saveProducts()"
       type="submit"
       class="submit"
     >

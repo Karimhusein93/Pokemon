@@ -19,11 +19,36 @@ export class CreateProductComponent implements OnInit {
     { id: 1, value: 'Mobile' },
     { id: 2, value: 'Landline' },
   ];
+  productsList: FormArray<any>;
   
   constructor(public builder: FormBuilder) {}
 
   productForm =this.builder.group({
-    products: this.builder.array([])
+    products: this.builder.array([
+      this.builder.group({
+        name: ["",[
+          Validators.required,
+          Validators.minLength(3),
+          Validators.pattern('^[A-Za-z0-9]*$')]
+         
+        ],
+        description: ["", [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.pattern('^[A-Za-z0-9]*$'),
+        ]],
+        price: ["", [
+          Validators.required,
+          Validators.pattern('^[0-9]+(\.[0-9]{1,2})?$'),
+        ]],
+        category: ['', [Validators.required]],
+        image: ['', [
+        Validators.required, Validators.pattern(this.reg)
+         ]],
+         phone: ['', [Validators.required,Validators.maxLength(10),Validators.pattern("^[0-9]*$")]],
+         typeOfPhone:['']
+        })
+    ])
 });
 
   ngOnInit(): void {
@@ -33,9 +58,6 @@ clearForm(){
 }
 get products(){
   return this.productForm.controls["products"] as FormArray;
-}
-deleteProduct(productIndex: number) {
-  this.products.removeAt(productIndex);
 }
 addNewProduct(){
   const form = this.builder.group({
@@ -62,5 +84,11 @@ addNewProduct(){
      typeOfPhone:['']
   });
   this.products.push(form);
+}
+saveProducts(){
+  this.productsList = this.products;
+  this.productsList.removeAt(this.productsList.length-1)
+  this.products.reset();
+
 }
 }
