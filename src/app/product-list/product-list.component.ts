@@ -9,14 +9,13 @@ import { ProductListService } from './product-list.service';
 })
 export class ProductListComponent implements OnInit {
   list:any =[];
-  productList:any =[];
   isValid:false;
   query: string;
-  constructor(private productListService :ProductListService) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.list = JSON.parse(localStorage.getItem("form"))
-    this.productList.push(this.list);
+
   }
 
 }

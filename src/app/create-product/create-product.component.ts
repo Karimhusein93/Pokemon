@@ -67,7 +67,10 @@ export class CreateProductComponent implements OnInit {
 
   ngOnInit(): void {}
   clearForm() {
-    this.productForm.reset();
+    const valueToKeep = this.products.at(this.products.length - 1);
+    this.products.at(this.products.length - 1).reset();
+    this.products.clear()
+    this.products.push(valueToKeep);
   }
   get products() {
     return this.productForm.controls['products'] as FormArray;
