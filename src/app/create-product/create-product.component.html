@@ -118,12 +118,13 @@
 </div>
   </ng-container>
 </ng-container>
-    <button mat-button  [disabled]="productForm.invalid" (click)="addNewProduct()">Add new product</button>
+    <button mat-button  [disabled]="products.controls.length > 5 || productForm.invalid" (click)="addNewProduct()">Add new product</button>
   
   <div class="buttons-row">
     <button (click)="clearForm()" mat-button class="reset">Reset</button>
     <button
       mat-button
+      [disabled]="products.controls.length === 1"
       (click) = "saveProducts()"
       type="submit"
       class="submit"

@@ -1,0 +1,14 @@
+<div style="text-align:center">
+    <div class="grid-layout" *ngIf="list">
+      <div
+        *ngFor="let item of list">
+        <mat-card class="product-card">
+            <img
+              mat-card-image
+              src={{item.image}}
+            />
+          <mat-card-title>{{ item.name}}</mat-card-title>
+        </mat-card>
+      </div>
+      </div>
+    </div>  

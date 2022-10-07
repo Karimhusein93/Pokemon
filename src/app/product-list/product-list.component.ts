@@ -1,4 +1,6 @@
+import { XhrFactory } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { ProductListService } from './product-list.service';
 
 @Component({
   selector: 'app-product-list',
@@ -6,9 +8,15 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-  constructor() { }
+  list:any =[];
+  productList:any =[];
+  isValid:false;
+  query: string;
+  constructor(private productListService :ProductListService) { }
 
   ngOnInit(): void {
+    this.list = JSON.parse(localStorage.getItem("form"))
+    this.productList.push(this.list);
   }
 
 }
