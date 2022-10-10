@@ -6,29 +6,35 @@
 td {
   padding-right: 8px;
 }
+.buttons-row
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 .reset {
   background-color: #3f51b5;
   color: white;
   width: 100px;
-  margin-bottom: 4%;
+}
+.reset-submit-buttons{
+  display: flex;
+  flex-direction: row;
+  margin-right: 8%;
 }
 .submit {
   background-color: #3f51b5;
   color: white;
-  margin-left: 1%;
+  margin-left: 7%;
   width: 100px;
-  margin-right: 7%;
-  margin-bottom: 4%;
 }
-.add{
+.add-button{
   background-color: #3f51b5;
   color: white;
-}
-.buttons-row {
-  display: flex;
-  justify-content: flex-end;
+  margin-left: 5%;
 }
 .product-table {
   margin: 2% 0% 5% 3%;
   width: 90%;
 }
+

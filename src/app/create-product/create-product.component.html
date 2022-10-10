@@ -4,8 +4,8 @@
   <div [formGroupName]="i">
       <table class="product-table" cellspacing="0">
     <tr class="first-row">
-      <td>
-        <mat-form-field class="name-field" appearance="fill">
+      <td class="col-lg-4">
+        <mat-form-field class="col-lg-12" appearance="fill">
           <mat-label>Name</mat-label>
           <input matInput formControlName="name"/>
           <mat-error
@@ -18,8 +18,8 @@
           >
         </mat-form-field>
       </td>
-      <td>
-        <mat-form-field class="description-field" appearance="fill">
+      <td class="col-lg-4">
+        <mat-form-field class="col-lg-12" appearance="fill">
           <mat-label>Description</mat-label>
           <input matInput formControlName="description" />
           <mat-error
@@ -32,8 +32,8 @@
           >
         </mat-form-field>
       </td>
-      <td>
-        <mat-form-field class="price-field" appearance="fill">
+      <td class="col-lg-4">
+        <mat-form-field class="col-lg-12" appearance="fill">
           <mat-label>Price</mat-label>
           <input matInput formControlName="price"/>
           <mat-error
@@ -47,8 +47,8 @@
       </td>
     </tr>
     <tr class="second-row">
-      <td>
-        <mat-form-field class="category-field" appearance="fill">
+      <td class="col-lg-4">
+        <mat-form-field class="col-lg-12" appearance="fill">
           <mat-label>Category</mat-label>
           <mat-select formControlName="category">
             <mat-option
@@ -68,8 +68,8 @@
           >
         </mat-form-field>
       </td>
-       <td>
-        <mat-form-field class="image-field" appearance="fill">
+       <td class="col-lg-4">
+        <mat-form-field class="col-lg-12" appearance="fill">
           <mat-label>Image URL</mat-label>
           <input matInput formControlName="image" />
           <mat-error
@@ -81,13 +81,9 @@
           >
         </mat-form-field>
       </td>
+      <div class="col-lg-4">
       <td>
-        <mat-icon
-          aria-hidden="false"
-          aria-label="Phone icon"
-          fontIcon="phone"
-        ></mat-icon>
-        <mat-form-field class="phone-field" appearance="fill">
+        <mat-form-field class="col-lg-12" appearance="fill">
           <mat-label>Phone</mat-label>
           <input matInput formControlName="phone"/>
           <mat-error
@@ -101,7 +97,7 @@
         </mat-form-field>
       </td> 
       <td>
-        <mat-form-field class="phone-type-field" appearance="fill">
+        <mat-form-field class="col-lg-12" appearance="fill">
           <mat-label>Select</mat-label>
           <mat-select formControlName="typeOfPhone">
             <mat-option
@@ -113,14 +109,17 @@
           </mat-select>
         </mat-form-field>
       </td>
+      </div>
     </tr>
   </table>
 </div>
   </ng-container>
 </ng-container>
-    <button mat-button  [disabled]="products.controls.length > 5 || productForm.invalid" (click)="addNewProduct()">Add new product</button>
-  
-  <div class="buttons-row">
+<div class="buttons-row">
+    <div class="add-button">
+    <button mat-button class="add-button" [disabled]="products.controls.length > 5 || productForm.invalid" (click)="addNewProduct()">Add new product</button>
+    </div>
+    <div class="reset-submit-buttons">
     <button (click)="clearForm()" mat-button class="reset">Reset</button>
     <button
       mat-button
@@ -131,5 +130,6 @@
     >
       Save
     </button>
+    </div>
   </div>
 </form>
