@@ -9,8 +9,8 @@
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 .product-card {
-    min-width: 180px;
-    max-width: 400px;
+    width: 250px;
+    height: 300px;
     color: #4E5152;
     background-color: #D8F4F7;
     display: inline-block;
@@ -21,18 +21,15 @@
     cursor: pointer;
 }
 
-.mat-card-image {
-    transform: scale(1.1);
-    margin-bottom: 0px;
-}
-
 .mat-card-title {
     font-size: 22px;
     display: inline-flex;
     text-transform: capitalize;
 }
-
-.mat-card-image {
-    transform: scale(1.1);
-    margin-bottom: 0px;
+.image-not-found{
+    background:url('src/app/images/not found.png');
+    height: 250px;
+}
+.image-found{
+height: 250px;
 }

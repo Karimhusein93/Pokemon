@@ -120,15 +120,4 @@ export class CreateProductComponent implements OnInit {
     this.products.clear();
     this.products.push(valueToKeep);
   }
-  imageExists(image_url: string) {
-    var xhr = new XMLHttpRequest();
-    xhr.open('HEAD', image_url, false);
-    xhr.send();
-
-    if (xhr.status === 404) {
-      return false;
-    } else {
-      return true;
-    }
-  }
 }
