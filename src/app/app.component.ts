@@ -14,17 +14,8 @@ export class AppComponent {
   isAdmin: any;
   title="Pokemon";
 	
-  constructor(private userService: UserService,public router: Router) { 
-    
-    
- } 
- userForm = new FormGroup({
-  pokemon: new FormControl('', [Validators.minLength(3),Validators.pattern('^[a-zA-Z ]*$')]),
-});
-
-get pokemon() {
-  return this.userForm.get('pokemon');
-}
+  constructor(private userService: UserService) { 
+ }
  ngOnInit() {
   this.isAdmin = this.userService.isAdmin;
   

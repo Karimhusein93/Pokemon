@@ -19,6 +19,8 @@ import { CreateProductComponent } from './create-product/create-product.componen
 import { ProductListComponent } from './product-list/product-list.component';
 import {ReactiveFormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
+import { SearchPokemonPipe } from './pipes/search-pokemon.pipe';
+import { SearchProductPipe } from './pipes/search-product.pipe';
 
 
 
@@ -29,6 +31,8 @@ import {MatSelectModule} from '@angular/material/select';
     PokemonDetailComponent,
     CreateProductComponent,
     ProductListComponent,
+    SearchPokemonPipe,
+    SearchProductPipe
   ],
   imports: [
     BrowserModule,

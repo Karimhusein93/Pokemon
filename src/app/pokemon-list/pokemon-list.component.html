@@ -1,7 +1,20 @@
 <div style="text-align:center">
+     <div class="pokemon-search" *ngIf="router.url === '/'">
+    <mat-form-field appearance="fill" class="search-form">
+      <input type="text"
+      [(ngModel)]="query"
+      class="form-control"class="pokemon-search-label" matInput placeholder="Pokemon Name">
+    </mat-form-field>
+    <!-- <div *ngIf="pokemon.errors && pokemon.errors['minlength']" class="form-error">
+       Please type at least 3 characters.
+    </div>
+    <div *ngIf="pokemon.errors?.['pattern']">
+      Please type only letters.
+ </div>  -->
+  </div>
   <div class="grid-layout" *ngIf="pokemons">
     <div
-      *ngFor="let pokemon of pokemons.results">
+      *ngFor="let pokemon of pokemons.results | searchPokemon: query:'name'">
       <div class="pokemon-detail" [routerLink]="['detail', pokemon.name]">
       <mat-card class="pokemon-card" *ngIf="pokemon.details">
           <img

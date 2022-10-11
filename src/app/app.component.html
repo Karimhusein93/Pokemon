@@ -8,36 +8,5 @@
     <div class="nav-item"><li><a routerLink="/detail" routerLinkActive="active" ariaCurrentWhenActive="page">Detail</a></li></div>
     <div class="nav-item"><li><a routerLink="/create-product" routerLinkActive="active" ariaCurrentWhenActive="page">Create Product</a></li></div>
    <div class="nav-item"><li><a routerLink="/product-list" routerLinkActive="active" ariaCurrentWhenActive="page">Product List</a></li></div>
-   <div class="nav-item"><li></li></div>
-   <div class="nav-item" *ngIf="router.url === '/'">
-    <li>
-    <mat-form-field appearance="fill" class="search-form" [formGroup]="userForm">
-      <input type="text"
-      formControlName="pokemon"
-      class="form-control"class="pokemon-search-label" matInput placeholder="Pokemon Name">
-    </mat-form-field>
-    <div *ngIf="pokemon.errors && pokemon.errors['minlength']" class="form-error">
-       Please type at least 3 characters.
-    </div>
-    <div *ngIf="pokemon.errors?.['pattern']">
-      Please type only letters.
- </div> 
-    </li>
-  </div>
-  <div class="nav-item" *ngIf="router.url === '/product-list'">
-    <li>
-    <mat-form-field appearance="fill" class="search-form" [formGroup]="userForm">
-      <input type="text"
-      formControlName="pokemon"
-      class="form-control"class="pokemon-search-label" matInput placeholder="Product Name">
-    </mat-form-field>
-    <div *ngIf="pokemon.errors && pokemon.errors['minlength']" class="form-error">
-       Please type at least 3 characters.
-    </div>
-    <div *ngIf="pokemon.errors?.['pattern']">
-      Please type only letters.
- </div> 
-    </li>
-  </div>
   </ul>
 <router-outlet></router-outlet>

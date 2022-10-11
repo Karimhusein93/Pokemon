@@ -1,4 +1,6 @@
 import { Component, EventEmitter, OnInit, Output} from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { PokemonDetails } from '../pokemon-detail/pokemon-details';
 import { Pokemon} from './pokemon';
@@ -12,13 +14,20 @@ import { PokemonResults } from './pokemon-results';
   styleUrls: ['./pokemon-list.component.css']
 })
 export class PokemonListComponent implements OnInit {
-  constructor(private pokemonService: PokemonListService){
+  constructor(private pokemonService: PokemonListService,public router: Router){
   }
 
   pokemons: Pokemon;
   subscriptions: Subscription[] = [];
   loading:boolean=true;
-
+  query:'';
+  pokemonForm = new FormGroup({
+    pokemon: new FormControl('', [Validators.minLength(3),Validators.pattern('^[a-zA-Z ]*$')]),
+  });
+  get pokemon() {
+    return this.pokemonForm.get('pokemon');
+  }
+  
   get pokemonsList(): any[] {
     return this.pokemonService.pokemons;
   }

@@ -7,8 +7,6 @@
       >
         <h1>{{ pokemon.name | titlecase }} # {{ pokemon.id }}</h1>
       </div>
-      <div class="stats">
-        <div class="stats-title"><p>Stats</p></div>
         <div class="pokemon-types">
           <p
             class="pokemon-type"
@@ -31,9 +29,8 @@
             {{ stat.base_stat }}
           </div>
         </div>
-      </div>
       <div class="profile-container">
-      <div class="profile-title"><p>Profile</p></div>
+      <div class="title" [style.background]="getFirstColorType(pokemon)"><p>Profile</p></div>
       <div class="profile">
         <div class="profile-headers" style="width: 20rem">
           <p class="list-group-item bg-transparent">Height</p>
@@ -46,23 +43,25 @@
           <span *ngFor="let pokemon of pokemon.abilities">
             {{ pokemon.ability.name | titlecase }}
           </span>
-          <span *ngFor="let pokemon of pokemon.species.egg_groups">
+          <!-- <span *ngFor="let pokemon of pokemon.species.egg_groups">
             {{ pokemon.name | titlecase }}
-          </span>
+          </span> -->
         </div>
       </div>
       </div>
 
       <div class="evolution-container">
-      <div class="evolution-title">
+      <div class="title" [style.background]="getFirstColorType(pokemon)">
         Evolution
       </div>
-          <div *ngFor="let evolution of pokemon.evolutions" class="evolution-data">
+      <div class="evolution-data">
+          <div *ngFor="let evolution of pokemon.evolutions" >
                   <p>{{ evolution.name | titlecase }}</p>
               </div>
       </div>
+      </div>
       <div class="damage-container">
-        <div class="damage-title">
+        <div class="title" [style.background]="getFirstColorType(pokemon)">
           Damage When Attacked
         </div>
           <div *ngFor="let damage of pokemon.damages" class="damage-data">

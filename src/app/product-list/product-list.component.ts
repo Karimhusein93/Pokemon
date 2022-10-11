@@ -1,6 +1,6 @@
-import { XhrFactory } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { ProductListService } from './product-list.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -9,9 +9,8 @@ import { ProductListService } from './product-list.service';
 })
 export class ProductListComponent implements OnInit {
   list: any = [];
-  isValid: false;
-  query: string;
-  constructor() {}
+  query: '';
+  constructor(public router: Router) {}
 
   ngOnInit(): void {
     this.list = JSON.parse(localStorage.getItem('form'));
