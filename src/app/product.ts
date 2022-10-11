@@ -7,4 +7,5 @@ export interface Product {
     image: string;
     phone: string
     typeOfPhone:string;
+    isImageValid:boolean;
 }

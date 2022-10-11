@@ -13,11 +13,18 @@ export class SearchPokemonPipe implements PipeTransform {
       return value;
     }
     let filteredUsers: PokemonResults[] = [];
+    if(filterString.length >=3){
     for (let user of value) {
-      if (user.name.toLowerCase().includes(filterString.toLowerCase())) {
+      if ((user.name.toLowerCase().includes(filterString.toLowerCase()))) {
         filteredUsers.push(user);
       }
     }
+    }
+    if(filterString.length <3){
+      for (let user of value) {
+          filteredUsers.push(user);
+      }
+      }
     return filteredUsers;
   }
 

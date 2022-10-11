@@ -3,22 +3,21 @@
     <mat-form-field appearance="fill" class="search-form">
       <input type="text"
       [(ngModel)]="query"
+      #product = ngModel
+      minlength="3"
       class="form-control"class="pokemon-search-label" matInput placeholder="Product Name">
-    </mat-form-field>
-    <!-- <div *ngIf="product.errors && product.errors['minlength']" class="form-error">
-       Please type at least 3 characters.
-    </div>
-    <div *ngIf="product.errors?.['pattern']">
-      Please type only letters.
- </div>  -->
+    <mat-error *ngIf="product.errors?.['minlength']" class="form-error">
+       Please type only letters and at least 3 characters.
+    </mat-error>
+  </mat-form-field>
   </div>
   <div class="grid-layout" *ngIf="list">
     <div *ngFor="let item of list | searchProduct: query:'name'">
-      <mat-card *ngIf="imageExists(item.image) === true" class="product-card">
+      <mat-card *ngIf="item.isImageValid === true" class="product-card">
         <img class="image-found" mat-card-image src="{{ item.image }}" />
         <mat-card-title>{{ item.name }}</mat-card-title>
       </mat-card>
-      <mat-card *ngIf="imageExists(item.image) === false" class="product-card">
+      <mat-card *ngIf="item.isImageValid === false" class="product-card">
         <img class="image-not-found" mat-card-image />
         <mat-card-title>{{ item.name }}</mat-card-title>
       </mat-card>

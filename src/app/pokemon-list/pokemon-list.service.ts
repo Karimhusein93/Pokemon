@@ -15,9 +15,9 @@ import { PokemonDetails } from '../pokemon-detail/pokemon-details';
 export class PokemonListService {
   private _pokemons: any[] = [];
   private firstPokemonUrl =
-    'http://pokeapi.co/api/v2/pokemon/?limit=30&offset=0';
+    'https://pokeapi.co/api/v2/pokemon/?limit=30&offset=0';
   private secondPokemonUrl =
-    'http://pokeapi.co/api/v2/pokemon/?limit=30&offset=30';
+    'https://pokeapi.co/api/v2/pokemon/?limit=30&offset=30';
   private urlDetails = 'https://pokeapi.co/api/v2/';
   loading: boolean = false;
 

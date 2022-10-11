@@ -3,14 +3,13 @@
     <mat-form-field appearance="fill" class="search-form">
       <input type="text"
       [(ngModel)]="query"
+      #pokemon = ngModel
+      minlength="3"
       class="form-control"class="pokemon-search-label" matInput placeholder="Pokemon Name">
-    </mat-form-field>
-    <!-- <div *ngIf="pokemon.errors && pokemon.errors['minlength']" class="form-error">
-       Please type at least 3 characters.
-    </div>
-    <div *ngIf="pokemon.errors?.['pattern']">
-      Please type only letters.
- </div>  -->
+    <mat-error *ngIf="pokemon.errors?.['minlength']" class="form-error">
+       Please type only letters and at least 3 characters.
+    </mat-error>
+  </mat-form-field>
   </div>
   <div class="grid-layout" *ngIf="pokemons">
     <div
