@@ -13,9 +13,14 @@ import { UserService } from './user.service';
 export class AppComponent {
   isAdmin: any;
   title="Pokemon";
-	
+	activeState = 'Home';
+
+  setStateAsActive(state:string) {
+    this.activeState = state;
+  }
   constructor(private userService: UserService) { 
  }
+ 
  ngOnInit() {
   this.isAdmin = this.userService.isAdmin;
   

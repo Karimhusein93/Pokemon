@@ -24,6 +24,6 @@ export class ProductGuard implements CanActivate {
     | UrlTree {
 
     this.isEmpty = localStorage.length
-    return this.isEmpty !==0 ? false :true;
+    return this.isEmpty ===0 ? false :true;
   }
 }

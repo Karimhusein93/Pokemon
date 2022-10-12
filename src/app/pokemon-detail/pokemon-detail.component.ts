@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class PokemonDetailComponent implements OnInit {
   pokemon: any = null;
+  pokemonSpecies:any =[];
   subscriptions: Subscription[] = [];
   href: string = "";
 
@@ -56,6 +57,7 @@ export class PokemonDetailComponent implements OnInit {
         this.pokemon = response;
         this.getEvolution();
         this.getDamage();
+        this.pokemonSpecies = this.pokemonListService.getSpecies(this.pokemon.name)
       }, (error: any) => console.log('Error Occurred:', error));
     });
   }
@@ -87,12 +89,13 @@ export class PokemonDetailComponent implements OnInit {
     if (!this.pokemon.evolutions || !this.pokemon.evolutions.length) {
       this.pokemon.evolutions = [];
       this.subscription = this.pokemonListService.getSpecies(this.pokemon.name).subscribe(response => {
+        this.pokemonSpecies = response;
         const id = this.getId(response.evolution_chain.url);
-        this.subscription = this.pokemonListService.getEvolution(id).subscribe(response => this.getEvolves(response.chain));
-      });
+        this.subscription = this.pokemonListService.getEvolution(id).subscribe(response => this.getEvolves(response.chain)); 
+      }); 
     }
-    
   }
+
   getDamage(){
     this.pokemon.damages = [];
     this.pokemonListService.getDamage(this.pokemon.id).subscribe(response => {
