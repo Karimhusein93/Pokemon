@@ -21,6 +21,7 @@ import {ReactiveFormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import { SearchPokemonPipe } from './pipes/search-pokemon.pipe';
 import { SearchProductPipe } from './pipes/search-product.pipe';
+import { ProductGuard } from './product-list/product.guard';
 
 
 
@@ -50,7 +51,7 @@ import { SearchProductPipe } from './pipes/search-product.pipe';
     ReactiveFormsModule,
     MatSelectModule
   ],
-  providers: [UserService],
+  providers: [UserService,ProductGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

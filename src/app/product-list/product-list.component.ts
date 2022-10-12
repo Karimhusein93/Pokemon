@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductListService } from './product-list.service';
 
 @Component({
@@ -13,7 +12,10 @@ export class ProductListComponent implements OnInit {
   query: '';
   imageUrl: '';
   isValid: boolean;
-  constructor(public router: Router) {}
+  constructor(
+    public router: Router,
+    private productListService: ProductListService
+  ) {}
 
   ngOnInit(): void {
     this.list = JSON.parse(localStorage.getItem('form'));

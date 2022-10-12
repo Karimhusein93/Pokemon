@@ -7,9 +7,6 @@
   color: white;
   margin-top: 100px;
 }
-.pokemon-stats-data {
-  height: 50px;
-}
 .stats {
   display: flex;
   flex-direction: column;
