@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Category } from '../category';
 import { PhoneType } from '../phone-type';
-import { ProductListService } from '../product-list/product-list.service';
 
 @Component({
   selector: 'app-create-product',
@@ -22,9 +21,7 @@ export class CreateProductComponent implements OnInit {
   ];
   productsList: FormArray<any>;
 
-  constructor(
-    public builder: FormBuilder
-  ) {}
+  constructor(public builder: FormBuilder) {}
 
   productForm = this.builder.group({
     products: this.builder.array([
@@ -68,7 +65,7 @@ export class CreateProductComponent implements OnInit {
   clearForm() {
     const valueToKeep = this.products.at(this.products.length - 1);
     this.products.at(this.products.length - 1).reset();
-    this.products.clear()
+    this.products.clear();
     this.products.push(valueToKeep);
   }
   get products() {

@@ -1,135 +1,143 @@
-<form [formGroup]="productForm" >
+<form [formGroup]="productForm">
   <ng-container formArrayName="products">
     <ng-container *ngFor="let productForm of products.controls; let i = index">
-  <div [formGroupName]="i">
-      <table class="product-table" cellspacing="0">
-    <tr class="first-row">
-      <td class="col-lg-4">
-        <mat-form-field class="col-lg-12" appearance="fill">
-          <mat-label>Name</mat-label>
-          <input matInput formControlName="name"/>
-          <mat-error
-            *ngIf="
-              productForm.get('name')?.hasError('required') ||
-              productForm.get('name')?.hasError('minlength') ||
-              productForm.get('name')?.hasError('pattern')
-            "
-            >The field is required, should have minimum 3 characters, composed only from alphabets and/or numbers.</mat-error
-          >
-        </mat-form-field>
-      </td>
-      <td class="col-lg-4">
-        <mat-form-field class="col-lg-12" appearance="fill">
-          <mat-label>Description</mat-label>
-          <input matInput formControlName="description" />
-          <mat-error
-            *ngIf="
-              productForm.get('description')?.hasError('required') ||
-              productForm.get('description')?.hasError('minlength') ||
-              productForm.get('description')?.hasError('pattern')
-            "
-            >The field is required, should have minimum 3 characters, composed only from alphabets and/or numbers.</mat-error
-          >
-        </mat-form-field>
-      </td>
-      <td class="col-lg-4">
-        <mat-form-field class="col-lg-12" appearance="fill">
-          <mat-label>Price</mat-label>
-          <input matInput formControlName="price"/>
-          <mat-error
-            *ngIf="
-              productForm.get('price')?.hasError('required') ||
-              productForm.get('price')?.hasError('pattern')
-            "
-            >The field is required and the input type shoud be number with 2 decimal places.</mat-error
-          >
-        </mat-form-field>
-      </td>
-    </tr>
-    <tr class="second-row">
-      <td class="col-lg-4">
-        <mat-form-field class="col-lg-12" appearance="fill">
-          <mat-label>Category</mat-label>
-          <mat-select formControlName="category">
-            <mat-option
-            
-              *ngFor="let category of categories"
-              [value]="category.id"
-            >
-              {{ category.value }}
-            </mat-option>
-            
-          </mat-select>
-          <mat-error
-            *ngIf="
-              productForm.get('category')?.hasError('required')
-            "
-            >The field is required.</mat-error
-          >
-        </mat-form-field>
-      </td>
-       <td class="col-lg-4">
-        <mat-form-field class="col-lg-12" appearance="fill">
-          <mat-label>Image URL</mat-label>
-          <input matInput formControlName="image" />
-          <mat-error
-            *ngIf="
-              productForm.get('image')?.hasError('required') ||
-              productForm.get('image')?.hasError('pattern')
-            "
-            >The field is required and image url should be valid</mat-error
-          >
-        </mat-form-field>
-      </td>
-      <div class="col-lg-4">
-      <td>
-        <mat-form-field class="col-lg-12" appearance="fill">
-          <mat-label>Phone</mat-label>
-          <input matInput formControlName="phone"/>
-          <mat-error
-            *ngIf="
-              productForm.get('phone')?.hasError('required') ||
-              productForm.get('phone')?.hasError('maxlength') ||
-              productForm.get('phone')?.hasError('pattern')
-            "
-            >The field is required, numbers only and the maximum length is 10.</mat-error
-          >
-        </mat-form-field>
-      </td> 
-      <td>
-        <mat-form-field class="col-lg-12" appearance="fill">
-          <mat-label>Select</mat-label>
-          <mat-select formControlName="typeOfPhone">
-            <mat-option
-              *ngFor="let phoneType of phoneTypes"
-              [value]="phoneType.id"
-            >
-              {{ phoneType.value }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </td>
+      <div [formGroupName]="i">
+        <table class="product-table" cellspacing="0">
+          <tr class="first-row">
+            <td class="col-lg-4">
+              <mat-form-field class="col-lg-12" appearance="fill">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" />
+                <mat-error
+                  *ngIf="
+                    productForm.get('name')?.hasError('required') ||
+                    productForm.get('name')?.hasError('minlength') ||
+                    productForm.get('name')?.hasError('pattern')
+                  "
+                  >The field is required, should have minimum 3 characters,
+                  composed only from alphabets and/or numbers.</mat-error
+                >
+              </mat-form-field>
+            </td>
+            <td class="col-lg-4">
+              <mat-form-field class="col-lg-12" appearance="fill">
+                <mat-label>Description</mat-label>
+                <input matInput formControlName="description" />
+                <mat-error
+                  *ngIf="
+                    productForm.get('description')?.hasError('required') ||
+                    productForm.get('description')?.hasError('minlength') ||
+                    productForm.get('description')?.hasError('pattern')
+                  "
+                  >The field is required, should have minimum 3 characters,
+                  composed only from alphabets and/or numbers.</mat-error
+                >
+              </mat-form-field>
+            </td>
+            <td class="col-lg-4">
+              <mat-form-field class="col-lg-12" appearance="fill">
+                <mat-label>Price</mat-label>
+                <input matInput formControlName="price" />
+                <mat-error
+                  *ngIf="
+                    productForm.get('price')?.hasError('required') ||
+                    productForm.get('price')?.hasError('pattern')
+                  "
+                  >The field is required and the input type shoud be number with
+                  2 decimal places.</mat-error
+                >
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr class="second-row">
+            <td class="col-lg-4">
+              <mat-form-field class="col-lg-12" appearance="fill">
+                <mat-label>Category</mat-label>
+                <mat-select formControlName="category">
+                  <mat-option
+                    *ngFor="let category of categories"
+                    [value]="category.id"
+                  >
+                    {{ category.value }}
+                  </mat-option>
+                </mat-select>
+                <mat-error
+                  *ngIf="productForm.get('category')?.hasError('required')"
+                  >The field is required.</mat-error
+                >
+              </mat-form-field>
+            </td>
+            <td class="col-lg-4">
+              <mat-form-field class="col-lg-12" appearance="fill">
+                <mat-label>Image URL</mat-label>
+                <input matInput formControlName="image" />
+                <mat-error
+                  *ngIf="
+                    productForm.get('image')?.hasError('required') ||
+                    productForm.get('image')?.hasError('pattern')
+                  "
+                  >The field is required and image url should be
+                  valid</mat-error
+                >
+              </mat-form-field>
+            </td>
+            <div class="col-lg-4">
+              <td>
+                <mat-form-field class="col-lg-12" appearance="fill">
+                  <mat-label>Phone</mat-label>
+                  <input matInput formControlName="phone" />
+                  <mat-error
+                    *ngIf="
+                      productForm.get('phone')?.hasError('required') ||
+                      productForm.get('phone')?.hasError('maxlength') ||
+                      productForm.get('phone')?.hasError('pattern')
+                    "
+                    >The field is required, numbers only and the maximum length
+                    is 10.</mat-error
+                  >
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field class="col-lg-12" appearance="fill">
+                  <mat-label>Select</mat-label>
+                  <mat-select formControlName="typeOfPhone">
+                    <mat-option
+                      *ngFor="let phoneType of phoneTypes"
+                      [value]="phoneType.id"
+                    >
+                      {{ phoneType.value }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>
+            </div>
+          </tr>
+        </table>
       </div>
-    </tr>
-  </table>
-</div>
+    </ng-container>
   </ng-container>
-</ng-container>
-<div class="buttons-row">
+  <div class="buttons-row">
     <div class="add-button">
-    <button mat-button class="add-button" [disabled]="products.controls.length > 5 || productForm.invalid" (click)="addNewProduct()">Add new product</button>
+      <button
+        mat-button
+        class="add-button"
+        [disabled]="products.controls.length > 5 || productForm.invalid"
+        (click)="addNewProduct()"
+      >
+        Add new product
+      </button>
     </div>
     <div class="reset-submit-buttons">
-    <button (click)="clearForm()" mat-button class="reset">Reset</button>
-    <button
-      mat-button
-      [disabled]="products.controls.length === 1"
-      (click) = "saveProducts()"
-      type="submit"
-      class="submit"
-    >
-      Save
-    </button>
+      <button (click)="clearForm()" mat-button class="reset">Reset</button>
+      <button
+        mat-button
+        [disabled]="products.controls.length === 1"
+        (click)="saveProducts()"
+        type="submit"
+        class="submit"
+      >
+        Save
+      </button>
     </div>
   </div>
   <div class="position-absolute top-0 start-0">
