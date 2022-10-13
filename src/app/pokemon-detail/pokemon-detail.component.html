@@ -6,6 +6,7 @@
         [style.background]="getFirstColorType(pokemon)"
       >
         <h1>{{ pokemon.name | titlecase }} # {{ pokemon.id }}</h1>
+        
       </div>
         <div class="pokemon-types">
           <p
@@ -16,6 +17,8 @@
             {{ type.type.name | titlecase }}
           </p>
         </div>
+        <div>
+          <img class="pokemon-detail-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.id}}.png"/>
         <div *ngFor="let stat of pokemon.stats" class="pokemon-stats">
           <div
             class="pokemon-stats-data"
@@ -29,6 +32,7 @@
             {{ stat.base_stat }}
           </div>
         </div>
+        </div>
       <div class="profile-container">
       <div class="title" [style.background]="getFirstColorType(pokemon)"><p>Profile</p></div>
       <div class="profile">
@@ -40,15 +44,15 @@
 
         </div>
         <div class="profile-data">
-          <p>{{ 0.1* pokemon.height }} m</p>
-          <p>{{ 0.1* pokemon.weight }} kg</p>
+          <p>{{ 0.1* pokemon.height | number : '1.0-1' }} m</p>
+          <p>{{ 0.1* pokemon.weight | number : '1.0-1'}} kg</p>
           <p>
-          <span *ngFor="let pokemon of pokemon.abilities">
+          <span class="list-comma" *ngFor="let pokemon of pokemon.abilities">
             {{ pokemon.ability.name | titlecase }}
           </span>
           </p>
           <p>
-          <span *ngFor="let pokemon of pokemonSpecies.egg_groups">
+          <span class="list-comma" *ngFor="let pokemon of pokemonSpecies.egg_groups">
             {{ pokemon.name | titlecase }}
           </span>
           </p>
@@ -63,16 +67,9 @@
       <div class="evolution-data">
           <div *ngFor="let evolution of pokemon.evolutions" >
                   <p>{{ evolution.name | titlecase }}</p>
+                  <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{evolution.id}}.png"/>
               </div>
       </div>
-      </div>
-      <div class="damage-container">
-        <div class="title" [style.background]="getFirstColorType(pokemon)">
-          Damage When Attacked
-        </div>
-          <div *ngFor="let damage of pokemon.damages" class="damage-data">
-            <p>{{ damage.name | titlecase }}</p>
-        </div>
       </div>
     </div>
       <div class="position-absolute top-0 start-0">

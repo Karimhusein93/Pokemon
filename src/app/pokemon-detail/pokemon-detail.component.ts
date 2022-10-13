@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { PokemonListService } from '../pokemon-list/pokemon-list.service';
 import { TypeColors } from '../type-colors';
 import { Router } from '@angular/router';
+import { Sprites } from './sprites';
 
 @Component({
   selector: 'app-pokemon-detail',
@@ -13,6 +14,7 @@ import { Router } from '@angular/router';
 export class PokemonDetailComponent implements OnInit {
   pokemon: any = null;
   pokemonSpecies:any =[];
+  pokemonSprites:Sprites[]=[];
   subscriptions: Subscription[] = [];
   href: string = "";
 
@@ -31,6 +33,7 @@ export class PokemonDetailComponent implements OnInit {
         if (this.pokemon) {
           this.getEvolution();
           this.getDamage();
+          this.pokemonSprites = this.pokemon.sprites
           return;
         }
       }
@@ -39,6 +42,7 @@ export class PokemonDetailComponent implements OnInit {
         this.pokemon = response;
         this.getEvolution();
         this.getDamage();
+        this.pokemonSprites = this.pokemon.sprites
       }, (error: any) => console.log('Error Occurred:', error));
     });
   }
@@ -49,6 +53,7 @@ export class PokemonDetailComponent implements OnInit {
         if (this.pokemon) {
           this.getEvolution();
           this.getDamage();
+          this.pokemonSprites = this.pokemon.sprites
           return;
         }
       }
@@ -57,11 +62,11 @@ export class PokemonDetailComponent implements OnInit {
         this.pokemon = response;
         this.getEvolution();
         this.getDamage();
+        this.pokemonSprites = this.pokemon.sprites;
         this.pokemonSpecies = this.pokemonListService.getSpecies(this.pokemon.name)
       }, (error: any) => console.log('Error Occurred:', error));
     });
   }
-  
 }
   getTypeColor(type: string): string {
       return '#' + TypeColors[type as keyof typeof TypeColors];
@@ -77,7 +82,7 @@ export class PokemonDetailComponent implements OnInit {
   getEvolves(chain: any) {
     this.pokemon.evolutions.push({
       id: this.getId(chain.species.url),
-      name: chain.species.name
+      name: chain.species.name,
     });
 
     if (chain.evolves_to.length) {

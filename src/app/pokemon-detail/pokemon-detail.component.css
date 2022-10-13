@@ -102,3 +102,15 @@ border: none;
   margin-left: 3%;
   margin-right: 3%;
 }
+.list-comma::before {
+  content: ',';
+}
+.list-comma:first-child::before {
+  content: '';
+}
+.pokemon-detail-image{
+  position:absolute;
+  width: 200px;
+  top:200px;
+  left: 250px;
+}
