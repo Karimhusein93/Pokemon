@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ProductListService } from './product-list.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -11,10 +10,8 @@ export class ProductListComponent implements OnInit {
   list: any = [];
   query: '';
   imageUrl: '';
-  isValid: boolean;
   constructor(
-    public router: Router,
-    private productListService: ProductListService
+    public router: Router
   ) {}
 
   ngOnInit(): void {

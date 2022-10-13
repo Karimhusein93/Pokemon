@@ -6,7 +6,6 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ProductListService } from './product-list.service';
 
 @Injectable({
   providedIn: 'root',
