@@ -109,6 +109,11 @@
                 </mat-form-field>
               </td>
             </div>
+            <div *ngIf="isLastIndex(i)">
+              <button mat-button (click)="removeItem(i)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
           </tr>
         </table>
       </div>
@@ -119,7 +124,6 @@
       <button
         mat-button
         class="add-button"
-        [disabled]="products.controls.length > 5 || productForm.invalid"
         (click)="addNewProduct()"
       >
         Add new product
@@ -129,7 +133,7 @@
       <button (click)="clearForm()" mat-button class="reset">Reset</button>
       <button
         mat-button
-        [disabled]="products.controls.length === 1"
+        [disabled]="products.controls.length > 5 || productForm.invalid"
         (click)="saveProducts()"
         type="submit"
         class="submit"

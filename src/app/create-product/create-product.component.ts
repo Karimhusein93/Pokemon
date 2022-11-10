@@ -19,6 +19,7 @@ export class CreateProductComponent implements OnInit {
     { id: 2, value: 'Landline' },
   ];
   productsList: FormArray<any>;
+  lastIndex:number;
 
   constructor(public builder: FormBuilder) {}
 
@@ -109,9 +110,19 @@ export class CreateProductComponent implements OnInit {
   saveProducts() {
     const valueToKeep = this.products.at(this.products.length - 1);
     this.productsList = this.products;
-    this.productsList.removeAt(this.productsList.length - 1);
     localStorage.setItem('form', JSON.stringify(this.productsList.value));
     this.products.clear();
     this.products.push(valueToKeep);
+    this.products.reset();
   }
+  removeItem(index:any){
+    this.products.removeAt(index);
+  }
+  isLastIndex(index:number){
+  this.lastIndex = this.products.length-1;
+  if(index === this.lastIndex){
+    return false;
+  }
+  return true;
+}
 }
