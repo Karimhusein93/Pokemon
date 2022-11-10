@@ -6,19 +6,23 @@
         [style.background]="getFirstColorType(pokemon)"
       >
         <h1>{{ pokemon.name | titlecase }} # {{ pokemon.id }}</h1>
-        
       </div>
-        <div class="pokemon-types">
-          <p
-            class="pokemon-type"
-            *ngFor="let type of pokemon.types"
-            [style.background]="getTypeColor(type.type.name)"
-          >
-            {{ type.type.name | titlecase }}
-          </p>
-        </div>
-        <div>
-          <img class="pokemon-detail-image" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.id}}.png"/>
+      <div class="pokemon-types">
+        <p
+          class="pokemon-type"
+          *ngFor="let type of pokemon.types"
+          [style.background]="getTypeColor(type.type.name)"
+        >
+          {{ type.type.name | titlecase }}
+        </p>
+      </div>
+      <div>
+        <img
+          class="pokemon-detail-image"
+          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{
+            pokemon.id
+          }}.png"
+        />
         <div *ngFor="let stat of pokemon.stats" class="pokemon-stats">
           <div
             class="pokemon-stats-data"
@@ -32,62 +36,73 @@
             {{ stat.base_stat }}
           </div>
         </div>
-        </div>
-      <div class="profile-container">
-      <div class="title" [style.background]="getFirstColorType(pokemon)"><p>Profile</p></div>
-      <div class="profile">
-        <div class="profile-headers" style="width: 20rem">
-          <p class="list-group-item bg-transparent">Height</p>
-          <p class="list-group-item bg-transparent">Weight</p>
-          <p class="list-group-item bg-transparent">Abilities</p>
-          <p class="list-group-item bg-transparent">Egg groups</p>
-
-        </div>
-        <div class="profile-data">
-          <p>{{ 0.1* pokemon.height | number : '1.0-1' }} m</p>
-          <p>{{ 0.1* pokemon.weight | number : '1.0-1'}} kg</p>
-          <p>
-          <span class="list-comma" *ngFor="let pokemon of pokemon.abilities">
-            {{ pokemon.ability.name | titlecase }}
-          </span>
-          </p>
-          <p>
-          <span class="list-comma" *ngFor="let pokemon of pokemonSpecies.egg_groups">
-            {{ pokemon.name | titlecase }}
-          </span>
-          </p>
-        </div>
       </div>
+      <div class="profile-container">
+        <div class="title" [style.background]="getFirstColorType(pokemon)">
+          <p>Profile</p>
+        </div>
+        <div class="profile">
+          <div class="profile-headers" style="width: 20rem">
+            <p class="list-group-item bg-transparent">Height</p>
+            <p class="list-group-item bg-transparent">Weight</p>
+            <p class="list-group-item bg-transparent">Abilities</p>
+            <p class="list-group-item bg-transparent">Egg groups</p>
+          </div>
+          <div class="profile-data">
+            <p>{{ 0.1 * pokemon.height | number: "1.0-1" }} m</p>
+            <p>{{ 0.1 * pokemon.weight | number: "1.0-1" }} kg</p>
+            <p>
+              <span
+                class="list-comma"
+                *ngFor="let pokemon of pokemon.abilities"
+              >
+                {{ pokemon.ability.name | titlecase }}
+              </span>
+            </p>
+            <p>
+              <span
+                class="list-comma"
+                *ngFor="let pokemon of pokemonSpecies.egg_groups"
+              >
+                {{ pokemon.name | titlecase }}
+              </span>
+            </p>
+          </div>
+        </div>
       </div>
 
       <div class="evolution-container">
-      <div class="title" [style.background]="getFirstColorType(pokemon)">
-        Evolution
-      </div>
-      <div class="evolution-data">
-          <div *ngFor="let evolution of pokemon.evolutions" >
-                  <p>{{ evolution.name | titlecase }}</p>
-                  <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{evolution.id}}.png"/>
-              </div>
-      </div>
-      </div>
-    </div>
-      <div class="position-absolute top-0 start-0">
-        <a class="btn btn-lg text-white" [routerLink]="['/']">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="26"
-            height="26"
-            fill="currentColor"
-            class="bi bi-arrow-left"
-            viewBox="0 0 16 16"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+        <div class="title" [style.background]="getFirstColorType(pokemon)">
+          Evolution
+        </div>
+        <div class="evolution-data">
+          <div *ngFor="let evolution of pokemon.evolutions">
+            <p>{{ evolution.name | titlecase }}</p>
+            <img
+              src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{
+                evolution.id
+              }}.png"
             />
-          </svg>
-        </a>
+          </div>
+        </div>
       </div>
     </div>
+    <div class="position-absolute top-0 start-0">
+      <a class="btn btn-lg text-white" [routerLink]="['/']">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="26"
+          height="26"
+          fill="currentColor"
+          class="bi bi-arrow-left"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+          />
+        </svg>
+      </a>
+    </div>
+  </div>
 </ng-container>

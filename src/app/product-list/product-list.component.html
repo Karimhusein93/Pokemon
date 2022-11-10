@@ -1,15 +1,20 @@
 <div style="text-align: center">
   <div class="product-search" *ngIf="router.url === '/product-list'">
     <mat-form-field appearance="fill" class="search-form">
-      <input type="text"
-      [(ngModel)]="query"
-      #product = ngModel
-      minlength="3"
-      class="form-control"class="pokemon-search-label" matInput placeholder="Product Name">
-    <mat-error *ngIf="product.errors?.['minlength']" class="form-error">
-       Please type only letters and at least 3 characters.
-    </mat-error>
-  </mat-form-field>
+      <input
+        type="text"
+        [(ngModel)]="query"
+        #product="ngModel"
+        minlength="3"
+        class="form-control"
+        class="pokemon-search-label"
+        matInput
+        placeholder="Product Name"
+      />
+      <mat-error *ngIf="product.errors?.['minlength']" class="form-error">
+        Please type only letters and at least 3 characters.
+      </mat-error>
+    </mat-form-field>
   </div>
   <div class="grid-layout" *ngIf="list">
     <div *ngFor="let item of list | searchProduct: query:'name'">

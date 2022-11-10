@@ -6,18 +6,16 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Pokemon } from './pokemon';
-import { PokemonDetails } from '../pokemon-detail/pokemon-details';
+import { Pokemon } from '../models/pokemon';
+import { PokemonDetails } from '../models/pokemon-details';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PokemonListService {
   private _pokemons: any[] = [];
-  private firstPokemonUrl =
+  private pokemonUrl =
     'https://pokeapi.co/api/v2/pokemon/?limit=30&offset=0';
-  private secondPokemonUrl =
-    'https://pokeapi.co/api/v2/pokemon/?limit=30&offset=30';
   private urlDetails = 'https://pokeapi.co/api/v2/';
   loading: boolean = false;
 
@@ -31,12 +29,7 @@ export class PokemonListService {
   }
   getPokemons(): Observable<Pokemon> {
     return this.http
-      .get<Pokemon>(this.firstPokemonUrl)
-      .pipe(catchError(this.handleError));
-  }
-  getMorePokemons(): Observable<Pokemon> {
-    return this.http
-      .get<Pokemon>(this.secondPokemonUrl)
+      .get<Pokemon>(this.pokemonUrl)
       .pipe(catchError(this.handleError));
   }
   get(name: string): Observable<any> {

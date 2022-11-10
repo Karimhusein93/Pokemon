@@ -1,4 +1,4 @@
-import { PokemonResults } from "./pokemon-results";
+import { PokemonResults } from './pokemon-results';
 
 export interface Pokemon {
   count: number;

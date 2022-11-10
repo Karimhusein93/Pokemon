@@ -1,35 +1,57 @@
-<div style="text-align:center">
-     <div class="pokemon-search" *ngIf="router.url === '/'">
+<div style="text-align: center">
+  <div class="pokemon-search" *ngIf="router.url === '/'">
     <mat-form-field appearance="fill" class="search-form">
-      <input type="text"
-      [(ngModel)]="query"
-      #pokemon = ngModel
-      minlength="3"
-      class="form-control"class="pokemon-search-label" matInput placeholder="Pokemon Name">
-    <mat-error *ngIf="pokemon.errors?.['minlength']" class="form-error">
-       Please type only letters and at least 3 characters.
-    </mat-error>
-  </mat-form-field>
+      <input
+        type="text"
+        [(ngModel)]="query"
+        #pokemon="ngModel"
+        minlength="3"
+        class="form-control"
+        class="pokemon-search-label"
+        matInput
+        placeholder="Pokemon Name"
+      />
+      <mat-error *ngIf="pokemon.errors?.['minlength']" class="form-error">
+        Please type only letters and at least 3 characters.
+      </mat-error>
+    </mat-form-field>
   </div>
   <div class="grid-layout" *ngIf="pokemons">
-    <div
-      *ngFor="let pokemon of pokemons.results | searchPokemon: query:'name'">
+    <div *ngFor="let pokemon of pokemons.results | searchPokemon: query:'name'">
       <div class="pokemon-detail" [routerLink]="['detail', pokemon.name]">
-      <mat-card class="pokemon-card" *ngIf="pokemon.details">
+        <mat-card class="pokemon-card" *ngIf="pokemon.details">
           <img
             mat-card-image
             src="{{ pokemon.details.sprites.front_default }}"
             alt="photo of {{ pokemon.name }}"
           />
-        <mat-card-title>{{ pokemon.name}}</mat-card-title>
-      </mat-card>
-    </div>
+          <mat-card-title>{{ pokemon.name }}</mat-card-title>
+        </mat-card>
+      </div>
     </div>
   </div>
   <div class="buttons-row">
-    <button  disabled *ngIf="loading === false" mat-button class="previous">Previous</button>
-    <button  *ngIf="loading === true"  mat-button class="previous" (click)="getPokemons(true)" >Previous</button>
-    <button  *ngIf="loading === false" mat-button class="next" (click)="getPokemons(false)">Next</button>
-    <button disabled *ngIf="loading === true" mat-button class="next">Next</button>
+    <button disabled *ngIf="loading === false" mat-button class="previous">
+      Previous
+    </button>
+    <button
+      *ngIf="loading === true"
+      mat-button
+      class="previous"
+      (click)="getPokemons(true)"
+    >
+      Previous
+    </button>
+    <button
+      *ngIf="loading === false"
+      mat-button
+      class="next"
+      (click)="getPokemons(false)"
+    >
+      Next
+    </button>
+    <button disabled *ngIf="loading === true" mat-button class="next">
+      Next
+    </button>
   </div>
 </div>

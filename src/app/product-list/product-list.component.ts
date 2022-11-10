@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -10,25 +11,24 @@ export class ProductListComponent implements OnInit {
   list: any = [];
   query: '';
   imageUrl: '';
-  constructor(
-    public router: Router
-  ) {}
+  constructor(public router: Router, private httpClient: HttpClient) {}
 
   ngOnInit(): void {
     this.list = JSON.parse(localStorage.getItem('form'));
     this.imageExists();
   }
   imageExists() {
-    var xhr = new XMLHttpRequest();
     for (let i = 0; i < this.list.length; i++) {
-      xhr.open('HEAD', this.list[i].image, false);
-      xhr.send();
-
-      if (xhr.status === 404) {
-        this.list[i].isImageValid = false;
-      } else {
-        this.list[i].isImageValid = true;
-      }
+      this.httpClient.get(this.list[i].image).subscribe(
+        () => {},
+        (err) => {
+          if (err.status === 404) {
+            this.list[i].isImageValid = false;
+          } else {
+            this.list[i].isImageValid = true;
+          }
+        }
+      );
     }
   }
 }

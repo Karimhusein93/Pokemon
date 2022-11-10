@@ -23,7 +23,7 @@
   justify-content: space-around;
   font-size: large;
 }
-.evolution-data>div>p{
+.evolution-data > div > p {
   padding: 5px 10px 0px 10px;
   color: black;
 }
@@ -62,8 +62,8 @@
   margin-left: 3%;
   margin-right: 3%;
 }
-.list-group-item{
-border: none;
+.list-group-item {
+  border: none;
 }
 
 .evolution-container {
@@ -104,13 +104,13 @@ border: none;
   margin-right: 3%;
 }
 .list-comma::before {
-  content: ',';
+  content: ",";
 }
 .list-comma:first-child::before {
-  content: '';
+  content: "";
 }
-.pokemon-detail-image{
-  position:absolute;
-  top:35%;
+.pokemon-detail-image {
+  position: absolute;
+  top: 35%;
   left: 20%;
 }

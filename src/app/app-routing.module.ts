@@ -7,16 +7,19 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ProductGuard } from './product-list/product.guard';
 
 const routes: Routes = [
-  { path:'',component:PokemonListComponent},
-  { path:'detail',component:PokemonDetailComponent},
-  { path:'detail/:name',component:PokemonDetailComponent},
-  { path:'create-product',component:CreateProductComponent},
-  { path:'product-list',component:ProductListComponent,canActivate: [ProductGuard]},
-
+  { path: '', component: PokemonListComponent },
+  { path: 'detail', component: PokemonDetailComponent },
+  { path: 'detail/:name', component: PokemonDetailComponent },
+  { path: 'create-product', component: CreateProductComponent },
+  {
+    path: 'product-list',
+    component: ProductListComponent,
+    canActivate: [ProductGuard],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -1,0 +1,52 @@
+.nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+    margin: 0;
+    padding-left: 0 !important;
+    height: 90px;
+  }
+  li {
+    margin-right: 20px;
+    margin-left: 20px;
+    list-style: none;
+  }
+  li a.active {
+    color: violet;
+  }
+  a {
+    text-decoration: none;
+    color: #292423;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    font-size: large;
+  }
+  .pokemon-logo {
+    height: 65px;
+    width: 150px;
+    margin-right: 3%;
+  }
+  .nav-item {
+    align-self: center;
+  }
+  ul > div:nth-child(6) {
+    width: 35%;
+  }
+  ::ng-deep .mat-focused .mat-form-field-label {
+    color: #292423 !important;
+  }
+  
+  ::ng-deep.mat-form-field-underline {
+    background-color: #292423 !important;
+  }
+  .mat-form-field-underline {
+    color: #292423 !important;
+  }
+  
+  ::ng-deep.mat-form-field-ripple {
+    background-color: #292423 !important;
+  }
+  input::placeholder {
+    color: #292423;
+  }
+  

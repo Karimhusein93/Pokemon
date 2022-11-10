@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { NavigationComponent } from './navigation/navigation.component';
 import { UserService } from './user.service';
-import { MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule} from '@angular/material/icon';
-import { MatToolbarModule} from '@angular/material/toolbar'; 
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -17,14 +17,13 @@ import { MatCardModule } from '@angular/material/card';
 import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
 import { CreateProductComponent } from './create-product/create-product.component';
 import { ProductListComponent } from './product-list/product-list.component';
-import {ReactiveFormsModule } from '@angular/forms';
-import {MatSelectModule} from '@angular/material/select';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
 import { SearchPokemonPipe } from './pipes/search-pokemon.pipe';
 import { SearchProductPipe } from './pipes/search-product.pipe';
 import { ProductGuard } from './product-list/product.guard';
 import { JoinPipe } from './pipes/join.pipe';
-
-
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +34,8 @@ import { JoinPipe } from './pipes/join.pipe';
     ProductListComponent,
     SearchPokemonPipe,
     SearchProductPipe,
-    JoinPipe
+    JoinPipe,
+    NavigationComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,9 +51,9 @@ import { JoinPipe } from './pipes/join.pipe';
     HttpClientModule,
     MatCardModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
   ],
-  providers: [UserService,ProductGuard],
-  bootstrap: [AppComponent]
+  providers: [UserService, ProductGuard],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

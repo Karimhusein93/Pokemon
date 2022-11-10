@@ -1,0 +1,53 @@
+<ul class="nav navbar-nav">
+    <li>
+      <img
+        class="pokemon-logo"
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/1280px-International_Pok%C3%A9mon_logo.svg.png"
+      />
+    </li>
+  
+    <div class="nav-item">
+      <li>
+        <a
+          [class.active]="isLinkActive('/')"
+          routerLink="/"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          >Home</a
+        >
+      </li>
+    </div>
+    <div class="nav-item">
+      <li>
+        <a
+          [class.active]="isLinkActive('/detail')"
+          routerLink="/detail"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          >Detail</a
+        >
+      </li>
+    </div>
+    <div class="nav-item" *ngIf="isAdmin">
+      <li>
+        <a
+          [class.active]="isLinkActive('/create-product')"
+          routerLink="/create-product"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          >Create Product</a
+        >
+      </li>
+    </div>
+    <div class="nav-item" *ngIf="isAdmin">
+      <li>
+        <a
+          [class.active]="isLinkActive('product-list')"
+          routerLink="/product-list"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+          >Product List</a
+        >
+      </li>
+    </div>
+  </ul>

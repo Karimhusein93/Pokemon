@@ -1,12 +1,2 @@
-  <ul class="nav navbar-nav">
-    <li><img
-      class="pokemon-logo"
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/1280px-International_Pok%C3%A9mon_logo.svg.png"
-    /></li>
-    
-    <div class="nav-item"><li (click)="setStateAsActive('Home')"><a [class.active]="'Home' === activeState" routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a></li></div>
-    <div class="nav-item"><li (click)="setStateAsActive('Detail')"><a [class.active]="'Detail' === activeState" routerLink="/detail" routerLinkActive="active" ariaCurrentWhenActive="page">Detail</a></li></div>
-    <div class="nav-item"><li (click)="setStateAsActive('Create Product')"><a  [class.active]="'Create Product' === activeState"routerLink="/create-product" routerLinkActive="active" ariaCurrentWhenActive="page">Create Product</a></li></div>
-   <div class="nav-item"><li (click)="setStateAsActive('Product List')"><a [class.active]="'Product List' === activeState" routerLink="/product-list" routerLinkActive="active" ariaCurrentWhenActive="page">Product List</a></li></div>
-  </ul>
+<app-navigation></app-navigation>
 <router-outlet></router-outlet>

@@ -1,4 +1,4 @@
-import { PokemonDetails } from "../pokemon-detail/pokemon-details";
+import { PokemonDetails } from '../models/pokemon-details';
 
 export interface PokemonResults {
   name: string;

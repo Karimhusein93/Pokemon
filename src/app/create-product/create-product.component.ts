@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
-import { Category } from '../category';
-import { PhoneType } from '../phone-type';
+import { Category } from '../models/category';
+import { PhoneType } from '../models/phone-type';
 
 @Component({
   selector: 'app-create-product',
@@ -9,7 +9,6 @@ import { PhoneType } from '../phone-type';
   styleUrls: ['./create-product.component.css'],
 })
 export class CreateProductComponent implements OnInit {
-  reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
   categories: Category[] = [
     { id: 1, value: 'Electronics' },
     { id: 2, value: 'Clothes' },
@@ -47,7 +46,7 @@ export class CreateProductComponent implements OnInit {
           [Validators.required, Validators.pattern('^[0-9]+(.[0-9]{1,2})?$')],
         ],
         category: ['', [Validators.required]],
-        image: ['', [Validators.required, Validators.pattern(this.reg)]],
+        image: ['', [Validators.required]],
         phone: [
           '',
           [
@@ -94,7 +93,7 @@ export class CreateProductComponent implements OnInit {
         [Validators.required, Validators.pattern('^[0-9]+(.[0-9]{1,2})?$')],
       ],
       category: ['', [Validators.required]],
-      image: ['', [Validators.required, Validators.pattern(this.reg)]],
+      image: ['', [Validators.required]],
       phone: [
         '',
         [

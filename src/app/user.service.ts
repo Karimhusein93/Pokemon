@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-  isAdmin : boolean = true;
-  constructor() { 
-    
-  }
+  isAdmin: boolean = true;
+  constructor() {}
 }

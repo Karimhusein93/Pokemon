@@ -73,11 +73,9 @@
                 <input matInput formControlName="image" />
                 <mat-error
                   *ngIf="
-                    productForm.get('image')?.hasError('required') ||
-                    productForm.get('image')?.hasError('pattern')
+                    productForm.get('image')?.hasError('required')
                   "
-                  >The field is required and image url should be
-                  valid</mat-error
+                  >The field is required</mat-error
                 >
               </mat-form-field>
             </td>
