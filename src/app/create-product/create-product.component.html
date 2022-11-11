@@ -1,11 +1,10 @@
-<form [formGroup]="productForm">
+<form [formGroup]="productForm" class="product-form">
   <ng-container formArrayName="products">
     <ng-container *ngFor="let productForm of products.controls; let i = index">
       <div [formGroupName]="i">
-        <table class="product-table" cellspacing="0">
-          <tr class="first-row">
-            <td class="col-lg-4">
-              <mat-form-field class="col-lg-12" appearance="fill">
+        <mat-grid-list cols="3" gutterSize="2px" rowHeight="90px">
+          <mat-grid-tile>
+              <mat-form-field class="col-lg-10" appearance="fill">
                 <mat-label>Name</mat-label>
                 <input matInput formControlName="name" />
                 <mat-error
@@ -18,9 +17,9 @@
                   composed only from alphabets and/or numbers.</mat-error
                 >
               </mat-form-field>
-            </td>
-            <td class="col-lg-4">
-              <mat-form-field class="col-lg-12" appearance="fill">
+          </mat-grid-tile>
+          <mat-grid-tile>
+              <mat-form-field class="col-lg-10" appearance="fill">
                 <mat-label>Description</mat-label>
                 <input matInput formControlName="description" />
                 <mat-error
@@ -33,9 +32,9 @@
                   composed only from alphabets and/or numbers.</mat-error
                 >
               </mat-form-field>
-            </td>
-            <td class="col-lg-4">
-              <mat-form-field class="col-lg-12" appearance="fill">
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field class="col-lg-10" appearance="fill">
                 <mat-label>Price</mat-label>
                 <input matInput formControlName="price" />
                 <mat-error
@@ -47,11 +46,9 @@
                   2 decimal places.</mat-error
                 >
               </mat-form-field>
-            </td>
-          </tr>
-          <tr class="second-row">
-            <td class="col-lg-4">
-              <mat-form-field class="col-lg-12" appearance="fill">
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field class="col-lg-10" appearance="fill">
                 <mat-label>Category</mat-label>
                 <mat-select formControlName="category">
                   <mat-option
@@ -66,9 +63,9 @@
                   >The field is required.</mat-error
                 >
               </mat-form-field>
-            </td>
-            <td class="col-lg-4">
-              <mat-form-field class="col-lg-12" appearance="fill">
+            </mat-grid-tile>
+          <mat-grid-tile>
+              <mat-form-field class="col-lg-10" appearance="fill">
                 <mat-label>Image URL</mat-label>
                 <input matInput formControlName="image" />
                 <mat-error
@@ -78,10 +75,9 @@
                   >The field is required</mat-error
                 >
               </mat-form-field>
-            </td>
-            <div class="col-lg-4">
-              <td>
-                <mat-form-field class="col-lg-12" appearance="fill">
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field class="col-lg-5" appearance="fill">
                   <mat-label>Phone</mat-label>
                   <input matInput formControlName="phone" />
                   <mat-error
@@ -94,9 +90,7 @@
                     is 10.</mat-error
                   >
                 </mat-form-field>
-              </td>
-              <td>
-                <mat-form-field class="col-lg-12" appearance="fill">
+                <mat-form-field class="col-lg-5" appearance="fill">
                   <mat-label>Select</mat-label>
                   <mat-select formControlName="typeOfPhone">
                     <mat-option
@@ -107,56 +101,37 @@
                     </mat-option>
                   </mat-select>
                 </mat-form-field>
-              </td>
-            </div>
-            <div *ngIf="isLastIndex(i)">
+              </mat-grid-tile>
+            <div *ngIf="isLastIndex(i)" class="remove-button">
               <button mat-button (click)="removeItem(i)">
               <mat-icon>delete</mat-icon>
             </button>
           </div>
-          </tr>
-        </table>
+        </mat-grid-list>
       </div>
     </ng-container>
   </ng-container>
-  <div class="buttons-row">
-    <div class="add-button">
-      <button
-        mat-button
-        class="add-button"
-        (click)="addNewProduct()"
-      >
-        Add new product
-      </button>
-    </div>
-    <div class="reset-submit-buttons">
-      <button (click)="clearForm()" mat-button class="reset">Reset</button>
-      <button
-        mat-button
-        [disabled]="products.controls.length > 5 || productForm.invalid"
-        (click)="saveProducts()"
-        type="submit"
-        class="submit"
-      >
-        Save
-      </button>
-    </div>
-  </div>
-  <div class="position-absolute top-0 start-0">
-    <a class="btn btn-lg text-white" [routerLink]="['/']">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="26"
-        height="26"
-        fill="currentColor"
-        class="bi bi-arrow-left"
-        viewBox="0 0 16 16"
-      >
-        <path
-          fill-rule="evenodd"
-          d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
-        />
-      </svg>
-    </a>
-  </div>
 </form>
+<div class="buttons-row">
+  <div class="add-button">
+    <button
+      mat-button
+      class="add-button"
+      (click)="addNewProduct()"
+    >
+      Add new product
+    </button>
+  </div>
+  <div class="reset-submit-buttons">
+    <button (click)="clearForm()" mat-button class="reset">Reset</button>
+    <button
+      mat-button
+      [disabled]="products.controls.length > 5 || productForm.invalid"
+      (click)="saveProducts()"
+      type="submit"
+      class="submit"
+    >
+      Save
+    </button>
+  </div>
+</div>

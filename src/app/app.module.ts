@@ -24,6 +24,7 @@ import { SearchProductPipe } from './pipes/search-product.pipe';
 import { ProductGuard } from './product-list/product.guard';
 import { JoinPipe } from './pipes/join.pipe';
 import { AppComponent } from './app.component';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { AppComponent } from './app.component';
     MatCardModule,
     ReactiveFormsModule,
     MatSelectModule,
+    MatGridListModule
   ],
   providers: [UserService, ProductGuard],
   bootstrap: [AppComponent],
