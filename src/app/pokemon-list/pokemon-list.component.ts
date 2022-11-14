@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { PokemonDetails } from '../models/pokemon-details';
-import { Pokemon }  from '../models/pokemon';
+import { Pokemon } from '../models/pokemon';
 import { PokemonListService } from './pokemon-list.service';
 import { PokemonResults } from '../models/pokemon-results';
 
@@ -17,10 +17,11 @@ export class PokemonListComponent implements OnInit {
     private pokemonService: PokemonListService,
     public router: Router
   ) {}
-
+  pokemonUrl:string ='https://pokeapi.co/api/v2/pokemon/?limit=30&offset=0';
   pokemons: Pokemon;
   subscriptions: Subscription[] = [];
-  loading: boolean = true;
+  next: boolean = true;
+  previous: boolean = false;
   pokemonList: any = [];
   query: '';
 
@@ -42,7 +43,7 @@ export class PokemonListComponent implements OnInit {
     this.subscriptions.push(subscription);
   }
   ngOnInit(): void {
-    this.getPokemons(this.loading);
+    this.getPokemons();
   }
 
   ngOnDestroy(): void {
@@ -51,22 +52,27 @@ export class PokemonListComponent implements OnInit {
     );
   }
 
-  getPokemons(loading: boolean): any {
-    if (loading) {
-      this.pokemonService.getPokemons().subscribe((data: Pokemon) => {
+  getPokemons(IsNextOrPrevious?: string): any {
+    {
+      if (IsNextOrPrevious !== undefined) {
+        this.pokemonUrl =
+          IsNextOrPrevious === 'next'
+            ? this.pokemons.next
+            : this.pokemons.previous;
+      }
+      this.pokemonService.getPokemons(this.pokemonUrl).subscribe((data: Pokemon) => {
         this.pokemons = data;
         if (this.pokemons.results && this.pokemons.results.length) {
           this.pokemons.results.forEach((pokemon) => {
             pokemon.id =
               pokemon.url.split('/')[pokemon.url.split('/').length - 2];
-            this.loading = false;
             this.getPokemonDetails(pokemon);
             this.pokemonList = this.pokemons.results;
           });
         }
       });
+    }
   }
-}
   getPokemonDetails(pokemon: PokemonResults): void {
     this.pokemonService
       .getPokemonDetails(pokemon.name)

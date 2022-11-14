@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Category } from '../models/category';
 import { PhoneType } from '../models/phone-type';
 
@@ -20,48 +20,15 @@ export class CreateProductComponent implements OnInit {
   ];
   productsList: FormArray<any>;
   lastIndex: number;
+  productForm:FormGroup;
 
   constructor(public builder: FormBuilder) {}
 
-  productForm = this.builder.group({
-    products: this.builder.array([
-      this.builder.group({
-        name: [
-          '',
-          [
-            Validators.required,
-            Validators.minLength(3),
-            Validators.pattern('^[A-Za-z0-9]*$'),
-          ],
-        ],
-        description: [
-          '',
-          [
-            Validators.required,
-            Validators.minLength(3),
-            Validators.pattern('^[A-Za-z0-9]*$'),
-          ],
-        ],
-        price: [
-          '',
-          [Validators.required, Validators.pattern('^[0-9]+(.[0-9]{1,2})?$')],
-        ],
-        category: ['', [Validators.required]],
-        image: ['', [Validators.required]],
-        phone: [
-          '',
-          [
-            Validators.required,
-            Validators.maxLength(10),
-            Validators.pattern('^[0-9]*$'),
-          ],
-        ],
-        typeOfPhone: [''],
-      }),
-    ]),
-  });
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.productForm = this.builder.group({
+      products: this.builder.array([this.createFormGroup()])
+    });
+  }
 
   clearForm() {
     const valueToKeep = this.products.at(this.products.length - 1);
@@ -73,6 +40,27 @@ export class CreateProductComponent implements OnInit {
     return this.productForm.controls['products'] as FormArray;
   }
   addNewProduct() {
+    this.products.push(this.createFormGroup())
+  }
+  saveProducts() {
+    const valueToKeep = this.products.at(this.products.length - 1);
+    this.productsList = this.products;
+    localStorage.setItem('form', JSON.stringify(this.productsList.value));
+    this.products.clear();
+    this.products.push(valueToKeep);
+    this.products.reset();
+  }
+  removeItem(index: any) {
+    this.products.removeAt(index);
+  }
+  isLastIndex(index: number) {
+    this.lastIndex = this.products.length - 1;
+    if (index === this.lastIndex) {
+      return false;
+    }
+    return true;
+  }
+  createFormGroup(){
     const form = this.builder.group({
       name: [
         '',
@@ -106,25 +94,7 @@ export class CreateProductComponent implements OnInit {
       ],
       typeOfPhone: [''],
     });
-    this.products.push(form);
-    // this.products.push(this.productForm.controls.products)
+    return form;
   }
-  saveProducts() {
-    const valueToKeep = this.products.at(this.products.length - 1);
-    this.productsList = this.products;
-    localStorage.setItem('form', JSON.stringify(this.productsList.value));
-    this.products.clear();
-    this.products.push(valueToKeep);
-    this.products.reset();
   }
-  removeItem(index: any) {
-    this.products.removeAt(index);
-  }
-  isLastIndex(index: number) {
-    this.lastIndex = this.products.length - 1;
-    if (index === this.lastIndex) {
-      return false;
-    }
-    return true;
-  }
-}
+

@@ -31,26 +31,26 @@
     </div>
   </div>
   <div class="buttons-row">
-    <button disabled *ngIf="loading === false" mat-button class="previous">
+    <button disabled *ngIf="pokemons?.previous === null" mat-button class="previous">
       Previous
     </button>
     <button
-      *ngIf="loading === true"
+      *ngIf="pokemons?.previous !== null"
       mat-button
       class="previous"
-      (click)="getPokemons(true)"
+      (click)="getPokemons('previous')"
     >
       Previous
     </button>
     <button
-      *ngIf="loading === false"
+      *ngIf="pokemons?.next !== null"
       mat-button
       class="next"
-      (click)="getPokemons(false)"
+      (click)="getPokemons('next')"
     >
       Next
     </button>
-    <button disabled *ngIf="loading === true" mat-button class="next">
+    <button disabled *ngIf="pokemons?.next === null" mat-button class="next">
       Next
     </button>
   </div>

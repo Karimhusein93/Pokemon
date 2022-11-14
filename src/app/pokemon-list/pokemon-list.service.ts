@@ -14,10 +14,7 @@ import { PokemonDetails } from '../models/pokemon-details';
 })
 export class PokemonListService {
   private _pokemons: any[] = [];
-  private pokemonUrl =
-    'https://pokeapi.co/api/v2/pokemon/?limit=30&offset=0';
   private urlDetails = 'https://pokeapi.co/api/v2/';
-  loading: boolean = false;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -27,9 +24,9 @@ export class PokemonListService {
   get pokemons(): any[] {
     return this._pokemons;
   }
-  getPokemons(): Observable<Pokemon> {
+  getPokemons(pokemonUrl:string): Observable<Pokemon> {
     return this.http
-      .get<Pokemon>(this.pokemonUrl)
+      .get<Pokemon>(pokemonUrl)
       .pipe(catchError(this.handleError));
   }
   get(name: string): Observable<any> {
